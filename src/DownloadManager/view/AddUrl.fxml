@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="84.0" prefWidth="568.0" style="-fx-background-color: #242424; -fx-text-fill: white; -fx-prompt-text-fill: white;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.AddUrlController">
+   <children>
+      <JFXTextField fx:id="urlField" focusColor="#59c94c" labelFloat="true" layoutX="14.0" layoutY="12.0" prefHeight="28.0" prefWidth="540.0" promptText="URL" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#34d1ac" />
+      <JFXButton fx:id="cancelbtn" layoutX="409.0" layoutY="50.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="138.0" ripplerFill="#e12121" text="Cancel" textFill="WHITE">
+         <opaqueInsets>
+            <Insets bottom="2.0" />
+         </opaqueInsets>
+      </JFXButton>
+      <JFXButton fx:id="addbtn" layoutX="252.0" layoutY="50.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="138.0" ripplerFill="#59bde8" style="-fx-background-color: green;" text="Add" textFill="#fdfeff">
+         <opaqueInsets>
+            <Insets bottom="2.0" />
+         </opaqueInsets>
+      </JFXButton>
+   </children>
+</AnchorPane>

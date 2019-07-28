@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.DownloadingPageController">
+   <children>
+      <JFXTextArea fx:id="informationlbl" layoutX="-1.0" layoutY="14.0" prefHeight="126.0" prefWidth="618.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXProgressBar fx:id="progressBar" layoutY="138.0" prefHeight="12.0" prefWidth="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="138.0" />
+      <JFXButton fx:id="cancelbtn" buttonType="RAISED" layoutX="480.0" layoutY="164.0" prefHeight="32.0" prefWidth="124.0" text="Cancel" />
+      <JFXButton fx:id="pausebtn" buttonType="RAISED" layoutX="341.0" layoutY="164.0" prefHeight="32.0" prefWidth="124.0" text="Pause" />
+   </children>
+</AnchorPane>
