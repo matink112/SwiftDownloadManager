@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -305,7 +306,7 @@ public class MainViewController implements Initializable {
 
     private void initDownloadList(){
         for(DownloadFile file : downloadFiles){
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/DownloadListItem.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator + "DownloadListItem.fxml"));
 
             try {
                 loader.load();

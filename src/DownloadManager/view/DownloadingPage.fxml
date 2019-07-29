@@ -20,7 +20,7 @@
          </children>
       </Group>
       <Label layoutX="182.0" layoutY="163.0" text="Downloaded :" textFill="WHITE" />
-      <Label fx:id="fileNamelbl" alignment="CENTER" layoutX="31.0" layoutY="31.0" prefHeight="19.0" prefWidth="528.0" text="Name" textFill="WHITE">
+      <Label fx:id="fileNamelbl" layoutX="31.0" layoutY="31.0" prefHeight="19.0" prefWidth="528.0" text="Name" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

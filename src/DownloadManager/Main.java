@@ -23,7 +23,7 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader();
 
-        loader.setLocation(Main.class.getResource("view"+ File.separator+"MainView.fxml"));
+        loader.setLocation(Main.class.getResource("view"+ File.separator +"MainView.fxml"));
 
         try{
             loader.load();
