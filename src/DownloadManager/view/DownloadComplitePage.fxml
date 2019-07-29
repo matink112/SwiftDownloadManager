@@ -12,25 +12,25 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="452.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="14.0" layoutY="21.0" text="Download Complete" textFill="#9ef59c">
+      <Label layoutX="10.0" layoutY="14.0" text="Download Complete" textFill="#9ef59c">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <SVGPath fx:id="closebtn" content="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" fill="#b2b2b2" layoutX="477.0" layoutY="9.0" pickOnBounds="true" stroke="TRANSPARENT" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="11.0" />
-      <Separator layoutY="66.0" prefWidth="200.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Label layoutX="59.0" layoutY="92.0" text="File" textFill="WHITE">
+      <Separator layoutY="63.0" prefWidth="200.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Label layoutX="59.0" layoutY="90.0" text="File" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="132.0" text="Location" textFill="WHITE">
+      <Label layoutX="25.0" layoutY="130.0" text="Location" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <JFXTextField fx:id="fileNameField" focusColor="#15fc0d" layoutX="104.0" layoutY="86.0" prefHeight="28.0" prefWidth="321.0" unFocusColor="#6fc954" />
-      <JFXTextField fx:id="filePathField" focusColor="#15fc0d" layoutX="104.0" layoutY="122.0" prefHeight="28.0" prefWidth="321.0" unFocusColor="#6fc954" />
+      <JFXTextField fx:id="fileNameField" focusColor="#15fc0d" layoutX="104.0" layoutY="84.0" prefHeight="28.0" prefWidth="321.0" unFocusColor="#6fc954" />
+      <JFXTextField fx:id="filePathField" focusColor="#15fc0d" layoutX="104.0" layoutY="120.0" prefHeight="28.0" prefWidth="321.0" unFocusColor="#6fc954" />
       <Group layoutX="13.0" layoutY="180.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="14.0">
          <children>
             <JFXButton fx:id="cancelbtn" layoutX="289.0" prefHeight="29.0" prefWidth="136.0" style="-fx-background-color: #404040;" text="Cancel" textFill="WHITE" />
