@@ -89,7 +89,7 @@
       </Group>
       <Group AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
          <children>
-            <JFXListView fx:id="categoryListView" layoutY="129.0" prefHeight="338.0" prefWidth="156.0" style="-fx-background-color: #828085;" styleClass="category-list">
+            <JFXListView fx:id="categoryListView" layoutY="129.0" prefHeight="338.0" prefWidth="156.0" style="-fx-background-color: #404040;" styleClass="category-list">
                <effect>
                   <Blend mode="OVERLAY" />
                </effect>
