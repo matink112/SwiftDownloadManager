@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTabPane?>
@@ -23,7 +15,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="513.0" prefWidth="1027.0" style="-fx-background-color: #0a0121; -fx-color-label-visible: white; -fx-text-fill: white;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.MainViewController">
+<AnchorPane fx:id="root" prefHeight="513.0" prefWidth="1027.0" style="-fx-background-color: #101010; -fx-color-label-visible: white; -fx-text-fill: white;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.MainViewController">
    <children>
       <Group layoutX="12.0" layoutY="-3.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="18.0">
          <children>
