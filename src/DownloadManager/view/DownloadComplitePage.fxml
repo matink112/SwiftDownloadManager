@@ -12,13 +12,13 @@
 
 <AnchorPane prefHeight="250.0" prefWidth="452.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="10.0" layoutY="14.0" text="Download Complete" textFill="#9ef59c">
+      <Label layoutX="12.0" layoutY="18.0" text="Download Complete" textFill="WHITE">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
       <SVGPath fx:id="closebtn" content="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" fill="#b2b2b2" layoutX="477.0" layoutY="9.0" pickOnBounds="true" stroke="TRANSPARENT" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="11.0" />
-      <Separator layoutY="63.0" prefWidth="200.0" style="-fx-background-color: green;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Separator layoutY="63.0" prefWidth="200.0" style="-: ;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
       <Label layoutX="59.0" layoutY="90.0" text="File" textFill="WHITE">
          <font>
             <Font size="14.0" />
