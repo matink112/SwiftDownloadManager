@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -8,22 +11,35 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="523.0" prefWidth="313.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.view.OptionPage">
+<AnchorPane prefHeight="523.0" prefWidth="343.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.view.OptionPage">
    <children>
       <ScrollPane layoutY="66.0" prefHeight="457.0" prefWidth="293.0" style="-fx-background-color: #242424;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <content>
-            <AnchorPane prefHeight="621.0" prefWidth="295.0" style="-fx-background-color: #242424;">
+            <AnchorPane prefHeight="621.0" prefWidth="325.0" style="-fx-background-color: #242424;">
                <children>
-                  <Label layoutX="14.0" layoutY="14.0" text="General settings" textFill="WHITE">
+                  <Label layoutX="16.0" layoutY="14.0" text="General settings" textFill="WHITE" AnchorPane.leftAnchor="16.0">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Label>
-                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="53.0" mnemonicParsing="false" text="Show download progress window" textFill="WHITE" unCheckedColor="WHITE" />
-                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="90.0" mnemonicParsing="false" text="Show download compelete dialog" textFill="WHITE" unCheckedColor="WHITE" />
-                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="127.0" mnemonicParsing="false" text="Overwrite existing file" textFill="WHITE" unCheckedColor="WHITE" />
-                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="166.0" mnemonicParsing="false" text="Download all file to a single folder" textFill="WHITE" unCheckedColor="WHITE" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="53.0" mnemonicParsing="false" text="Show download progress window" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="26.0" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="90.0" mnemonicParsing="false" text="Show download compelete dialog" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="26.0" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="127.0" mnemonicParsing="false" text="Overwrite existing file" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="26.0" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="26.0" layoutY="166.0" mnemonicParsing="false" text="Download all file to a single folder" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="26.0" />
+                  <Group layoutX="26.0" layoutY="223.0">
+                     <children>
+                        <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" unFocusColor="#43ff50" />
+                        <JFXButton layoutX="216.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #404040;" text="change" textFill="WHITE" />
+                        <Label text="Default download folder" textFill="WHITE" />
+                     </children>
+                  </Group>
+                  <Group layoutX="26.0" layoutY="303.0">
+                     <children>
+                        <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" unFocusColor="#43ff50" />
+                        <JFXButton layoutX="216.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #404040;" text="change" textFill="WHITE" />
+                        <Label text="Temporary Folder" textFill="WHITE" />
+                     </children>
+                  </Group>
                </children>
             </AnchorPane>
          </content>
