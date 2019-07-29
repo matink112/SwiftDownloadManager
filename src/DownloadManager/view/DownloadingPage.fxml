@@ -2,14 +2,50 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXProgressBar?>
-<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="215.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.DownloadingPageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="589.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextArea fx:id="informationlbl" layoutX="-1.0" layoutY="14.0" prefHeight="126.0" prefWidth="618.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <JFXProgressBar fx:id="progressBar" layoutY="138.0" prefHeight="12.0" prefWidth="611.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="138.0" />
-      <JFXButton fx:id="cancelbtn" buttonType="RAISED" layoutX="480.0" layoutY="164.0" prefHeight="32.0" prefWidth="124.0" text="Cancel" />
-      <JFXButton fx:id="pausebtn" buttonType="RAISED" layoutX="341.0" layoutY="164.0" prefHeight="32.0" prefWidth="124.0" text="Pause" />
+      <Group layoutX="295.0" layoutY="301.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
+         <children>
+            <JFXButton layoutX="144.0" prefHeight="29.0" prefWidth="136.0" style="-fx-background-color: #404040;" text="Cancel" textFill="WHITE" />
+            <JFXButton prefHeight="29.0" prefWidth="136.0" style="-fx-background-color: #404040;" text="Pause" textFill="WHITE" />
+         </children>
+      </Group>
+      <Label layoutX="182.0" layoutY="163.0" text="Downloaded :" textFill="WHITE" />
+      <Label alignment="CENTER" layoutX="31.0" layoutY="31.0" prefHeight="19.0" prefWidth="528.0" text="Name" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="181.0" layoutY="98.0" text="Downloading :" textFill="WHITE" />
+      <Line endX="490.0" layoutX="115.0" layoutY="76.0" startX="-100.0" stroke="#fcfafa" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Arc cacheHint="QUALITY" disable="true" fill="#33f549" layoutX="82.0" layoutY="163.0" length="280.0" nodeOrientation="LEFT_TO_RIGHT" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
+      <Arc blendMode="DARKEN" fill="#242424" layoutX="82.0" layoutY="163.0" length="360.0" radiusX="65.0" radiusY="65.0" startAngle="45.0" stroke="RED" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" type="ROUND" />
+      <Label alignment="CENTER" layoutX="38.0" layoutY="137.0" prefHeight="34.0" prefWidth="89.0" text="77%" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="40.0" layoutY="173.0" prefHeight="19.0" prefWidth="85.0" text="899 KB/s" textFill="WHITE" />
+      <HBox centerShape="false" layoutX="186.0" layoutY="128.0" prefHeight="11.0" prefWidth="364.0">
+         <children>
+            <JFXProgressBar layoutX="62.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="10.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="10.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="192.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="10.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="101.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="192.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+            <JFXProgressBar layoutX="283.0" layoutY="10.0" prefHeight="6.0" progress="0.62" />
+         </children>
+      </HBox>
+      <Label layoutX="270.0" layoutY="162.0" prefHeight="18.0" prefWidth="253.0" text="58 MB / 100MB" textFill="WHITE" />
    </children>
 </AnchorPane>
