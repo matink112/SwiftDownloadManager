@@ -13,7 +13,7 @@
       <JFXComboBox fx:id="categoryCombo" layoutX="99.0" layoutY="70.0" prefHeight="0.0" prefWidth="142.0" style="-fx-text-fill: white;" />
       <Label layoutX="24.0" layoutY="75.0" text="Category :" textFill="WHITE" />
       <JFXTextField fx:id="pathField" layoutX="100.0" layoutY="118.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" />
-      <Label layoutX="34.0" layoutY="123.0" text="Save At :" textFill="WHITE" />
+      <Label layoutX="34.0" layoutY="123.0" text="Save As :" textFill="WHITE" />
       <JFXButton fx:id="browsebtn" buttonType="RAISED" layoutX="409.0" layoutY="118.0" prefHeight="26.0" prefWidth="20.0" style="-: ;" text="..." textFill="WHITE" />
       <JFXButton fx:id="downlaterbtn" buttonType="RAISED" layoutX="34.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#d6fc41" style="-: ;" text="Download Later" textFill="WHITE" />
       <JFXButton fx:id="startDownbtn" buttonType="RAISED" layoutX="227.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#91ffe5" style="-fx-background-color: green;" text="Start Download" textFill="WHITE" />
