@@ -121,6 +121,8 @@ public class OptionPageController implements Initializable {
 
         initSegmentSlider();
 
+        initFields();
+
     }
 
 
@@ -165,22 +167,29 @@ public class OptionPageController implements Initializable {
         proxyPasswordField.setText(StaticData.getProxyPass());
 
 
-        proxyField.setOnInputMethodTextChanged( e -> StaticData.setProxyHost(proxyField.getText()));
+        proxyField.setOnAction( e -> StaticData.setProxyHost(proxyField.getText()));
 
-        socksField.setOnInputMethodTextChanged( e -> StaticData.setSocksHost(socksField.getText()));
+        socksField.setOnAction( e -> StaticData.setSocksHost(socksField.getText()));
 
-        proxyUserField.setOnInputMethodTextChanged( e -> StaticData.setProxyUserName(proxyUserField.getText()));
+        proxyUserField.setOnAction( e -> StaticData.setProxyUserName(proxyUserField.getText()));
 
-        proxyPasswordField.setOnInputMethodTextChanged( e -> StaticData.setProxyPass(proxyPasswordField.getText()));
+        proxyPasswordField.setOnAction( e -> StaticData.setProxyPass(proxyPasswordField.getText()));
 
 
-        startQueueTimePicker.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue.matches("([0-1][0-9]|2[0-3])\\d:[0-5][0-9]\\d"))
-                startQueueTimePicker.setFocusColor(new Color(255,0,0,1));
-            else
-                startQueueTimePicker.setFocusColor(new Color(64,89,169,1));
-
+        startQueueTimePicker.setOnAction(event -> {
+            if(!startQueueTimePicker.getText().matches("^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")) {
+                startQueueTimePicker.setText("00:00");
+            }
         });
+
+
+        stopQueueTimePicker.setOnAction(event -> {
+            if(!stopQueueTimePicker.getText().matches("^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")) {
+                stopQueueTimePicker.setText("00:00");
+            }
+        });
+
+
 
     }
 
@@ -191,7 +200,7 @@ public class OptionPageController implements Initializable {
 
 
         segmentPerDownloadSlider.valueProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setSegmentPartDownload((int) newValue));
+                -> StaticData.setSegmentPartDownload((Double) newValue));
 
     }
 

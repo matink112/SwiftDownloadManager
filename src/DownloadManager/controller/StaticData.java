@@ -35,7 +35,7 @@ public class StaticData {
 
     private static String downloadTemporaryFolderPath;
 
-    private static int segmentPartDownload = 8;
+    private static int segmentPartDownload = 4;
 
     private static String proxyHost;
 
@@ -44,6 +44,8 @@ public class StaticData {
     private static String proxyUserName;
 
     private static String proxyPass;
+
+
 
 
 
@@ -194,8 +196,11 @@ public class StaticData {
         return segmentPartDownload;
     }
 
-    public static void setSegmentPartDownload(int segmentPartDownload) {
-        StaticData.segmentPartDownload = segmentPartDownload;
+    public static void setSegmentPartDownload(Double segmentPartDownload) {
+
+        try {
+            StaticData.segmentPartDownload = segmentPartDownload.intValue();
+        }catch (Exception ignored){}
     }
 
     public static String getProxyHost() {

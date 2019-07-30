@@ -48,7 +48,7 @@
                   <Insets top="-90.0" />
                </opaqueInsets>
             </Label>
-            <JFXSlider fx:id="segmentPerDownloadSlider" blockIncrement="32.0" layoutX="198.0" layoutY="457.0" majorTickUnit="32.0" max="32.0" min="1.0" minorTickCount="32" prefHeight="16.0" prefWidth="109.0" showTickLabels="true" snapToTicks="true" value="8.0" AnchorPane.rightAnchor="-35.0" />
+            <JFXSlider fx:id="segmentPerDownloadSlider" blockIncrement="32.0" layoutX="198.0" layoutY="457.0" majorTickUnit="32.0" max="32.0" min="1.0" minorTickCount="1" prefHeight="16.0" prefWidth="109.0" showTickLabels="true" value="8.0" AnchorPane.rightAnchor="-35.0" />
          </children>
       </Group>
       <Group>
