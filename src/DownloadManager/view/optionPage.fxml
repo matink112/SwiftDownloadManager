@@ -2,6 +2,9 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Group?>
@@ -9,40 +12,173 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="523.0" prefWidth="343.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.view.OptionPage">
+<AnchorPane prefHeight="1927.0" prefWidth="343.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.view.OptionPage">
    <children>
       <Label layoutX="16.0" layoutY="14.0" text="General settings" textFill="WHITE" AnchorPane.leftAnchor="16.0">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="61.0" mnemonicParsing="false" text="Show download progress window" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
-      <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="98.0" mnemonicParsing="false" text="Show download compelete dialog" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
+      <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="61.0" mnemonicParsing="false" selected="true" text="Show download progress window" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
+      <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="98.0" mnemonicParsing="false" selected="true" text="Show download compelete dialog" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
       <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="135.0" mnemonicParsing="false" text="Overwrite existing file" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
       <JFXCheckBox checkedColor="#10a158" layoutX="35.0" layoutY="174.0" mnemonicParsing="false" text="Download all file to a single folder" textFill="WHITE" unCheckedColor="WHITE" AnchorPane.leftAnchor="35.0" />
       <Group layoutX="35.0" layoutY="231.0">
          <children>
-            <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" unFocusColor="#43ff50" />
+            <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
             <JFXButton layoutX="216.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #404040;" text="change" textFill="WHITE" />
             <Label text="Default download folder" textFill="WHITE" />
          </children>
       </Group>
       <Group layoutX="35.0" layoutY="311.0">
          <children>
-            <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" unFocusColor="#43ff50" />
+            <JFXTextField editable="false" layoutY="24.0" prefHeight="28.0" prefWidth="195.0" promptText="default file path" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
             <JFXButton layoutX="216.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: #404040;" text="change" textFill="WHITE" />
             <Label text="Temporary Folder" textFill="WHITE" />
          </children>
       </Group>
-      <Label layoutX="16.0" layoutY="403.0" text="Network setting" textFill="WHITE">
+      <Label layoutX="16.0" layoutY="421.0" text="Network setting" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="35.0" layoutY="456.0" text="Segments per download" textFill="WHITE">
+      <Group layoutY="18.0">
+         <children>
+            <Label layoutX="35.0" layoutY="456.0" text="Segments per download" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets top="-90.0" />
+               </opaqueInsets>
+            </Label>
+            <JFXSlider blockIncrement="32.0" layoutX="198.0" layoutY="465.0" majorTickUnit="32.0" max="32.0" minorTickCount="32" prefHeight="16.0" prefWidth="109.0" showTickLabels="true" snapToTicks="true" value="8.0" AnchorPane.rightAnchor="36.0" />
+         </children>
+      </Group>
+      <Group>
+         <children>
+            <Group layoutX="1.0" layoutY="96.0">
+               <children>
+                  <JFXTextField layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" promptText="&lt;Host:Port&gt;" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use socks proxy server" textFill="WHITE" unCheckedColor="WHITE" />
+               </children>
+            </Group>
+            <Label layoutX="35.0" layoutY="527.0" text="Proxy Setting" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Group layoutX="1.0" layoutY="285.0">
+               <children>
+                  <JFXTextField layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
+                  <Label layoutX="56.0" layoutY="574.0" text="Proxy password" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets top="-90.0" />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </Group>
+            <Group layoutX="1.0" layoutY="193.0">
+               <children>
+                  <JFXTextField layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
+                  <Label layoutX="56.0" layoutY="574.0" text="Proxy username" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets top="-90.0" />
+                     </opaqueInsets>
+                  </Label>
+               </children>
+            </Group>
+            <Group>
+               <children>
+                  <JFXTextField layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" promptText="&lt;Host:Port&gt;" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
+                  <JFXCheckBox checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use proxy server" textFill="WHITE" unCheckedColor="WHITE" />
+               </children>
+            </Group>
+         </children>
+      </Group>
+      <Label layoutX="14.0" layoutY="978.0" text="Queue &amp; scheduler" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Group>
+         <children>
+            <Group>
+               <children>
+                  <Label layoutX="35.0" layoutY="1008.0" text="Queues" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets top="-90.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <Group>
+                     <children>
+                        <Group>
+                           <children>
+                              <JFXListView layoutX="35.0" layoutY="1032.0" prefHeight="117.0" prefWidth="272.0" />
+                           </children>
+                        </Group>
+                        <JFXButton layoutX="111.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: #404040;" text="Delete" textFill="WHITE" />
+                        <JFXButton layoutX="237.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: #404040;" text="Save" textFill="WHITE" />
+                        <JFXButton layoutX="36.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="70.0" style="-fx-background-color: #404040;" text="New" textFill="WHITE" />
+                     </children>
+                  </Group>
+               </children>
+            </Group>
+            <Group layoutX="1.0" layoutY="210.0">
+               <children>
+                  <Label layoutX="35.0" layoutY="1008.0" text="Files in queue" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets top="-90.0" />
+                     </opaqueInsets>
+                  </Label>
+                  <Group>
+                     <children>
+                        <Group>
+                           <children>
+                              <JFXListView layoutX="35.0" layoutY="1032.0" prefHeight="117.0" prefWidth="272.0" />
+                           </children>
+                        </Group>
+                        <JFXButton layoutX="36.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="90.0" style="-fx-background-color: #404040;" text="Move up" textFill="WHITE" />
+                        <JFXButton layoutX="130.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="98.0" style="-fx-background-color: #404040;" text="Move down" textFill="WHITE" />
+                        <JFXButton layoutX="232.0" layoutY="1161.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="75.0" style="-fx-background-color: #404040;" text="Move to" textFill="WHITE" />
+                     </children>
+                  </Group>
+               </children>
+            </Group>
+         </children>
+      </Group>
+      <JFXCheckBox checkedColor="#10a158" layoutX="55.0" layoutY="1486.0" mnemonicParsing="false" text="Start queue at" textFill="WHITE" unCheckedColor="WHITE" />
+      <Label layoutX="35.0" layoutY="1443.0" text="Scheduler" textFill="WHITE">
          <opaqueInsets>
             <Insets top="-90.0" />
          </opaqueInsets>
       </Label>
+      <JFXCheckBox checkedColor="#10a158" layoutX="55.0" layoutY="1524.0" mnemonicParsing="false" text="Stop queue at" textFill="WHITE" unCheckedColor="WHITE" />
+      <Label layoutX="16.0" layoutY="1602.0" text="Advanced setting" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Group layoutX="-11.0" layoutY="9.0">
+         <children>
+            <Label layoutX="87.0" layoutY="1665.0" text="completes" textFill="WHITE" />
+            <JFXCheckBox checkedColor="#10a158" layoutX="57.0" layoutY="1645.0" mnemonicParsing="false" text=" " textFill="WHITE" unCheckedColor="WHITE" />
+            <Label layoutX="87.0" layoutY="1645.0" text="Shutdown computer after all download" textFill="WHITE" />
+         </children>
+      </Group>
+      <Group layoutX="-11.0" layoutY="71.0">
+         <children>
+            <Label layoutX="87.0" layoutY="1665.0" text="downloads" textFill="WHITE" />
+            <JFXCheckBox checkedColor="#10a158" layoutX="57.0" layoutY="1645.0" mnemonicParsing="false" text=" " textFill="WHITE" unCheckedColor="WHITE" />
+            <Label layoutX="87.0" layoutY="1645.0" text="Pirevent hibernate or sleep during" textFill="WHITE" />
+         </children>
+      </Group>
+      <Group layoutX="-11.0" layoutY="135.0">
+         <children>
+            <Label layoutX="87.0" layoutY="1665.0" text="system starts" textFill="WHITE" />
+            <JFXCheckBox checkedColor="#10a158" layoutX="57.0" layoutY="1645.0" mnemonicParsing="false" text=" " textFill="WHITE" unCheckedColor="WHITE" />
+            <Label layoutX="87.0" layoutY="1645.0" text="Launch Download Manager 2019 when" textFill="WHITE" />
+         </children>
+      </Group>
+      <JFXCheckBox checkedColor="#10a158" layoutX="46.0" layoutY="1848.0" mnemonicParsing="false" text="Show try icon" textFill="WHITE" unCheckedColor="WHITE" />
+      <JFXDatePicker layoutX="186.0" layoutY="1479.0" prefHeight="28.0" prefWidth="138.0" style="-fx-style-text-fill: white;" />
+      <JFXDatePicker layoutX="186.0" layoutY="1516.0" prefHeight="28.0" prefWidth="138.0" style="-fx-style-text-fill: white;" />
    </children>
 </AnchorPane>
