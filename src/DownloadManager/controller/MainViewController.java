@@ -16,9 +16,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.MoveTo;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -95,9 +99,19 @@ public class MainViewController implements Initializable {
     @FXML
     private Group searchGroup;
 
+    @FXML
+    private ScrollPane settingLayout;
+
+    @FXML
+    private SVGPath settingBackbtn;
+
+    @FXML
+    private AnchorPane settingDrawer;
+
 
 
     WritableValue<Double> searchFieldWidth;
+    WritableValue<Double> settingDrawerAnchor;
     private Stage primaryStage;
     private ArrayList<DownloadFile> downloadFiles;
 
@@ -120,13 +134,14 @@ public class MainViewController implements Initializable {
 
         initDownloadList();
 
-
+        initSettingDrawer();
 
     }
 
     //////////////private functions
 
     private void initBtns(){
+
         twiterbtn.setOnMouseEntered(e -> btnHoverHandler(twiterbtn , true));
         twiterbtn.setOnMouseExited(e -> btnHoverHandler(twiterbtn , false));
         twiterbtn.setOnMouseClicked(e -> btnClickHandler(twiterbtn));
@@ -188,7 +203,10 @@ public class MainViewController implements Initializable {
 
         settingbtn.setOnMouseEntered(e -> btnHoverHandler(settingbtn , true));
         settingbtn.setOnMouseExited(e -> btnHoverHandler(settingbtn , false));
-        settingbtn.setOnMouseClicked(e -> btnClickHandler(settingbtn));
+        settingbtn.setOnMouseClicked(e ->{
+            btnClickHandler(settingbtn);
+            openOrCloseSettingDrawer(true);
+        });
 
     }
 
@@ -326,10 +344,60 @@ public class MainViewController implements Initializable {
     }
 
 
+    private void initSettingDrawer(){
+
+        initSettingLayout();
+
+        settingBackbtn.setOnMouseClicked(e -> openOrCloseSettingDrawer(false));
+
+        settingDrawerAnchor = new WritableValue<Double>() {
+            @Override
+            public Double getValue() {
+                return root.getRightAnchor(settingDrawer);
+            }
+
+            @Override
+            public void setValue(Double value) {
+                root.setRightAnchor(settingDrawer , value);
+            }
+        };
+
+    }
+
+
+    private void initSettingLayout(){
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view" + File.separator + "optionPage.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        settingLayout.setContent(loader.getRoot());
+    }
+
+
+    private void openOrCloseSettingDrawer(boolean isOpenning){
+
+        Timeline timeline = new Timeline();
+
+        KeyValue keyValue = new KeyValue(settingDrawerAnchor, (isOpenning ? 0.0 : -359.0));
+
+        KeyFrame keyFrame = new KeyFrame(Duration.millis(150), keyValue);
+
+        timeline.getKeyFrames().add(keyFrame);
+
+        timeline.play();
+
+    }
+
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;

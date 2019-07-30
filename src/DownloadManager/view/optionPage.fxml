@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1927.0" prefWidth="343.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.OptionPageController">
+<AnchorPane prefHeight="1927.0" prefWidth="340.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.OptionPageController">
    <children>
       <Label layoutX="16.0" layoutY="14.0" text="General settings" textFill="WHITE" AnchorPane.leftAnchor="16.0">
          <font>
@@ -49,7 +49,7 @@
                   <Insets top="-90.0" />
                </opaqueInsets>
             </Label>
-            <JFXSlider blockIncrement="32.0" layoutX="198.0" layoutY="465.0" majorTickUnit="32.0" max="32.0" minorTickCount="32" prefHeight="16.0" prefWidth="109.0" showTickLabels="true" snapToTicks="true" value="8.0" AnchorPane.rightAnchor="36.0" />
+            <JFXSlider blockIncrement="32.0" layoutX="198.0" layoutY="465.0" majorTickUnit="32.0" max="32.0" min="1.0" minorTickCount="32" prefHeight="16.0" prefWidth="109.0" showTickLabels="true" snapToTicks="true" value="8.0" AnchorPane.rightAnchor="36.0" />
          </children>
       </Group>
       <Group>
