@@ -114,6 +114,7 @@ public class MainViewController implements Initializable {
     WritableValue<Double> settingDrawerAnchor;
     private Stage primaryStage;
     private ArrayList<DownloadFile> downloadFiles;
+    private OptionPageController optionPageController;
 
 
     @Override
@@ -374,6 +375,8 @@ public class MainViewController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        optionPageController = loader.getController();
 
         settingLayout.setContent(loader.getRoot());
     }
