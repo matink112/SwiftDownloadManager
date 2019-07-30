@@ -117,6 +117,7 @@ public class MainViewController implements Initializable {
     private OptionPageController optionPageController;
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -377,6 +378,8 @@ public class MainViewController implements Initializable {
         }
 
         optionPageController = loader.getController();
+
+        optionPageController.setPrimaryStage(primaryStage);
 
         settingLayout.setContent(loader.getRoot());
     }

@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXTextField?>
@@ -172,12 +171,12 @@
       <Group layoutX="-11.0" layoutY="135.0">
          <children>
             <Label layoutX="87.0" layoutY="1665.0" text="system starts" textFill="WHITE" />
-            <JFXCheckBox fx:id="launchStartUpCheck" checkedColor="#10a158" layoutX="57.0" layoutY="1645.0" mnemonicParsing="false" text=" " textFill="WHITE" unCheckedColor="WHITE" />
+            <JFXCheckBox fx:id="launchStartUpCheck" checkedColor="#10a158" layoutX="57.0" layoutY="1645.0" mnemonicParsing="false" selected="true" text=" " textFill="WHITE" unCheckedColor="WHITE" />
             <Label layoutX="87.0" layoutY="1645.0" text="Launch Download Manager 2019 when" textFill="WHITE" />
          </children>
       </Group>
-      <JFXCheckBox fx:id="showTryIconCheck" checkedColor="#10a158" layoutX="46.0" layoutY="1848.0" mnemonicParsing="false" text="Show try icon" textFill="WHITE" unCheckedColor="WHITE" />
-      <JFXDatePicker fx:id="startQueueTimePicker" layoutX="186.0" layoutY="1473.0" prefHeight="28.0" prefWidth="138.0" style="-fx-style-text-fill: white;" />
-      <JFXDatePicker fx:id="stopQueueTimePicker" layoutX="186.0" layoutY="1518.0" prefHeight="28.0" prefWidth="138.0" style="-fx-style-text-fill: white;" />
+      <JFXCheckBox fx:id="showTryIconCheck" checkedColor="#10a158" layoutX="46.0" layoutY="1848.0" mnemonicParsing="false" selected="true" text="Show try icon" textFill="WHITE" unCheckedColor="WHITE" />
+      <JFXTextField fx:id="startQueueTimePicker" alignment="CENTER" layoutX="186.0" layoutY="1474.0" prefHeight="29.0" prefWidth="126.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="00:00" unFocusColor="#43ff50" />
+      <JFXTextField fx:id="stopQueueTimePicker" alignment="CENTER" layoutX="186.0" layoutY="1521.0" prefHeight="29.0" prefWidth="126.0" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" text="00:00" unFocusColor="#43ff50" />
    </children>
 </AnchorPane>
