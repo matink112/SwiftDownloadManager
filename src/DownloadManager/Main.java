@@ -1,6 +1,7 @@
 package DownloadManager;
 
 import DownloadManager.controller.MainViewController;
+import DownloadManager.controller.Service;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -18,12 +19,22 @@ public class Main extends Application {
     private double xOffset =0;
     private double yOffset =0;
 
+    private static Service service;
+
+    public static Service getService() {
+        return service;
+    }
+
+    public static void setService(Service service) {
+        Main.service = service;
+    }
 
 
     @Override
     public void start(final Stage primaryStage)  {
 
         FXMLLoader loader = new FXMLLoader();
+
 
         loader.setLocation(Main.class.getResource("view"+ File.separator +"MainView.fxml"));
 
@@ -34,6 +45,7 @@ public class Main extends Application {
         }
 
         AnchorPane root = loader.getRoot();
+
 
         root.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
@@ -55,6 +67,11 @@ public class Main extends Application {
 
         primaryStage.show();
 
+        service = new Service(primaryStage , controller);
+
+        service.start();
+
+        service.setName("Service");
 
     }
 

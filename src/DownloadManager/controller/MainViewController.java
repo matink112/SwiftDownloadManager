@@ -121,6 +121,7 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+
         downloadFiles = new ArrayList<>();
 
         downloadFiles.add(new DownloadFile("http://up.nafismusic.ir/Nafis/Matias%20Puumala%20-%20Last%20Light%20.mp3"
