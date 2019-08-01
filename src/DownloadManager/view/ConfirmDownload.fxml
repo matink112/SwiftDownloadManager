@@ -14,12 +14,12 @@
       <Label layoutX="24.0" layoutY="75.0" text="Category :" textFill="WHITE" />
       <JFXTextField fx:id="pathField" layoutX="100.0" layoutY="118.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" />
       <Label layoutX="34.0" layoutY="123.0" text="Save As :" textFill="WHITE" />
-      <JFXButton fx:id="browsebtn" buttonType="RAISED" layoutX="409.0" layoutY="118.0" prefHeight="26.0" prefWidth="20.0" style="-: ;" text="..." textFill="WHITE" />
-      <JFXButton fx:id="downlaterbtn" buttonType="RAISED" layoutX="34.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#d6fc41" style="-: ;" text="Download Later" textFill="WHITE" />
+      <JFXButton fx:id="browsebtn" buttonType="RAISED" layoutX="409.0" layoutY="118.0" prefHeight="26.0" prefWidth="20.0"  text="..." textFill="WHITE" />
+      <JFXButton fx:id="downlaterbtn" buttonType="RAISED" layoutX="34.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#d6fc41"  text="Download Later" textFill="WHITE" />
       <JFXButton fx:id="startDownbtn" buttonType="RAISED" layoutX="227.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#91ffe5" style="-fx-background-color: green;" text="Start Download" textFill="WHITE" />
-      <JFXButton fx:id="cancelbtn" buttonType="RAISED" layoutX="416.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="RED" style="-fx-background-color: ;" text="Cancel" textFill="WHITE" />
+      <JFXButton fx:id="cancelbtn" buttonType="RAISED" layoutX="416.0" layoutY="171.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="RED"  text="Cancel" textFill="WHITE" />
       <Label fx:id="sizelbl" alignment="CENTER" layoutX="448.0" layoutY="131.0" prefHeight="16.0" prefWidth="110.0" text="size" textFill="WHITE" />
-      <JFXButton fx:id="addCatbtn" buttonType="RAISED" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" style="-fx-background-color: ;" text="+" textFill="WHITE" />
+      <JFXButton fx:id="addCatbtn" buttonType="RAISED" layoutX="250.0" layoutY="70.0" mnemonicParsing="false" text="+" textFill="WHITE" />
       <JFXTextField fx:id="urlField" layoutX="98.0" layoutY="16.0" prefHeight="26.0" prefWidth="448.0" style="-fx-text-fill: white;" />
       <SVGPath content="M40,60 C42,48 44,30 25,32" fill="WHITE" layoutX="470.0" layoutY="63.0" AnchorPane.bottomAnchor="95.0" />
    </children>
