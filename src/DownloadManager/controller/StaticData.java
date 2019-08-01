@@ -69,6 +69,9 @@ public class StaticData {
     private static String[] applicationFormates = {"apk","appx","deb","ebuild","pisi","pkg","rpm","snap"};
 
 
+    private String[] documentFormates = {"txt","doc","xml","html","htm","docx","odt","pdf"
+            ,"ps","svg","xls","xlsm","pptx","ppt","xps","potx","ppa","jpg","png","odp"};
+
 
 
 

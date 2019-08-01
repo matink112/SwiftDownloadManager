@@ -10,6 +10,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
@@ -22,10 +26,27 @@ public class test {
 
     public static void main(String[] args) throws IOException {
 
-        TrayIconSystem trayIconSystem = new TrayIconSystem();
+        String[] a = "https://docs.oracle.com".split("/");
 
-        trayIconSystem.addDownloderToTryIcon(null , "test");
+        if(a.length>3 && a[a.length-1].matches(".*[.].+")) {
+            System.out.println("t");
+        }
 
+
+
+    }
+
+
+    private static boolean checkUrl(String url){
+        try {
+            URI url1 = new URL(url).toURI();
+        } catch (MalformedURLException e) {
+            return false;
+        } catch (URISyntaxException e) {
+            return false;
+        }
+
+        return true;
     }
 
 }

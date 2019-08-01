@@ -5,8 +5,12 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
 import javafx.scene.shape.SVGPath;
 
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,19 +50,49 @@ public class AddUrlController implements Initializable {
         });
 
         addbtn.setOnAction(event -> {
-            if(checkUrl())
+            msglbl.setText("");
+
+            if(checkUrl(urlField.getText()))
                 showConfirmDownloadPage();
+            else
+                msglbl.setText("This is not a valid url");
         });
 
-    }
-
-
-    private boolean checkUrl(){
+        getContentFromClipBoard();
 
     }
+
+
+    private boolean checkUrl(String url){
+
+        try {
+            URI url1 = new URL(url).toURI();
+        } catch (MalformedURLException e) {
+            return false;
+        } catch (URISyntaxException e) {
+            return false;
+        }
+        String[] a = url.split("/");
+
+        return a.length > 3 && a[a.length - 1].matches(".*[.].+");
+    }
+
 
 
     private void showConfirmDownloadPage(){
+
+    }
+
+
+    private void getContentFromClipBoard(){
+
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+
+        System.out.println(clipboard.getString());
+
+            String url = clipboard.getString();
+            if (checkUrl(url))
+                urlField.setText(url);
 
     }
 }
