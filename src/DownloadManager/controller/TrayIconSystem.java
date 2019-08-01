@@ -21,8 +21,9 @@ public class TrayIconSystem {
     private SystemTray systemTray;
     private TrayIcon trayIcon;
     private PopupMenu mainPopUpMenu;
-    private ArrayList menuItems;
+    private ArrayList<MenuItem> menuItems;
     MainViewController mainViewController;
+    MenuItem exitbtn;
 
 
     public TrayIconSystem(){
@@ -53,7 +54,7 @@ public class TrayIconSystem {
         mainPopUpMenu = new PopupMenu();
 
 
-        MenuItem exitbtn = new MenuItem("Exit");
+        exitbtn = new MenuItem("Exit");
         exitbtn.addActionListener(e->closeProgram());
         exitbtn.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC
                 , 12));
@@ -71,10 +72,13 @@ public class TrayIconSystem {
 
         mainPopUpMenu.add(openbtn);
         mainPopUpMenu.add(runBackgroundbtn);
-        mainPopUpMenu.addSeparator();
         mainPopUpMenu.add(exitbtn);
 
         trayIcon = new TrayIcon(image , "Download Manager", mainPopUpMenu);
+
+
+
+        trayIcon.setImageAutoSize(true);
 
         StaticData.setTrayIcon(trayIcon);
 
@@ -87,29 +91,30 @@ public class TrayIconSystem {
 
     }
 
-    private  void showMainStage(){
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainView.fxml"));
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        Stage stage = new Stage();
-        stage.setScene(loader.getRoot());
-
-        stage.show();
-    }
-
-    private void ssa(){
-        Application.launch(Main.class);
-    }
-
     private void closeProgram(){
 
         Platform.exit();
         systemTray.remove(trayIcon);
 
+    }
+
+
+
+    public void addDownloderToTryIcon(Stage downloaderStage , String name){
+        mainPopUpMenu.remove(exitbtn);
+
+        MenuItem item = new MenuItem(name);
+
+        item.addActionListener(e -> {
+            downloaderStage.show();
+            mainPopUpMenu.remove(item);
+        });
+
+        item.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC
+                , 12));
+
+        mainPopUpMenu.add(item);
+
+        mainPopUpMenu.add(exitbtn);
     }
 }
