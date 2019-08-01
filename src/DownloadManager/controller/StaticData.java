@@ -7,10 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class StaticData {
 
     private static Stage PrimaryStage;
+
+    private static Stage addUrlStage;
 
     private static TrayIcon trayIcon=null;
 
@@ -52,6 +55,21 @@ public class StaticData {
 
     private static String proxyPass;
 
+    private static String[] compressFormates = {"7z","ace","s7z","afa"
+            ,"alz", "arc","ark","b6z","car","cfs","dd","dgc","pit","rar"
+            ,"rk","tar","gz","Z","bz2","lzma","txz","xz"};
+
+
+    private static String[] musicFormates= { "3gp","aa","aac","m4a","m4b","m4p","mp3","mpc","ogg",
+            "oga","wav","wma","wv"};
+
+    private static String[] movieFormates ={"mkv","flv","vob","ogv","ogg","gif","gifv","mng","avi"
+            ,"wmv","rm","amv","mp4","mpg","m2v","m4v","3gp","flv","f4v","f4p","f4b"};
+
+    private static String[] applicationFormates = {"apk","appx","deb","ebuild","pisi","pkg","rpm","snap"};
+
+
+
 
 
 
@@ -62,8 +80,6 @@ public class StaticData {
 
         setDownloadTemporaryFolderPath(System.getProperty("user.home") + File.separator + "Downloads" +
                                         File.separator + ".temp");
-
-
 
     }
 
@@ -256,5 +272,13 @@ public class StaticData {
 
     public static void setTrayIcon(TrayIcon trayIcon) {
         StaticData.trayIcon = trayIcon;
+    }
+
+    public static Stage getAddUrlStage() {
+        return addUrlStage;
+    }
+
+    public static void setAddUrlStage(Stage addUrlStage) {
+        StaticData.addUrlStage = addUrlStage;
     }
 }

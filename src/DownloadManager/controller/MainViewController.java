@@ -13,13 +13,17 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.awt.*;
@@ -101,6 +105,9 @@ public class MainViewController implements Initializable {
     @FXML
     private AnchorPane settingDrawer;
 
+    @FXML
+    private StackPane stackPane;
+
 
 
     WritableValue<Double> searchFieldWidth;
@@ -149,6 +156,7 @@ public class MainViewController implements Initializable {
         twiterbtn.setOnMouseExited(e -> btnHoverHandler(twiterbtn , false));
         twiterbtn.setOnMouseClicked(e -> btnClickHandler(twiterbtn));
 
+
          powerbtn.setOnMouseEntered(e -> btnHoverHandler(powerbtn , true));
         powerbtn.setOnMouseExited(e -> btnHoverHandler(powerbtn , false));
         powerbtn.setOnMouseClicked(e -> {
@@ -157,9 +165,11 @@ public class MainViewController implements Initializable {
             SystemTray.getSystemTray().remove(StaticData.getTrayIcon());
         });
 
+
         facebookbtn.setOnMouseEntered(e -> btnHoverHandler(facebookbtn , true));
         facebookbtn.setOnMouseExited(e -> btnHoverHandler(facebookbtn , false));
         facebookbtn.setOnMouseClicked(e -> btnClickHandler(facebookbtn));
+
 
         instabtn.setOnMouseEntered(e -> btnHoverHandler(instabtn , true));
         instabtn.setOnMouseExited(e -> btnHoverHandler(instabtn , false));
@@ -172,6 +182,7 @@ public class MainViewController implements Initializable {
                 ex.printStackTrace();
             }
         });
+
 
         minimizebtn.setOnMouseEntered(e -> btnHoverHandler(minimizebtn , true));
         minimizebtn.setOnMouseExited(e -> btnHoverHandler(minimizebtn , false));
@@ -188,25 +199,34 @@ public class MainViewController implements Initializable {
             primaryStage.close();
         });
 
+
         addUrlbtn.setOnMouseEntered(e -> btnHoverHandler(addUrlbtn , true));
         addUrlbtn.setOnMouseExited(e -> btnHoverHandler(addUrlbtn , false));
-        addUrlbtn.setOnMouseClicked(e -> btnClickHandler(addUrlbtn));
+        addUrlbtn.setOnMouseClicked(e ->{
+            btnClickHandler(addUrlbtn);
+            addUrl();
+        });
+
 
         removebtn.setOnMouseEntered(e -> btnHoverHandler(removebtn , true));
         removebtn.setOnMouseExited(e -> btnHoverHandler(removebtn , false));
         removebtn.setOnMouseClicked(e -> btnClickHandler(removebtn));
 
+
         pausebtn.setOnMouseEntered(e -> btnHoverHandler(pausebtn , true));
         pausebtn.setOnMouseExited(e -> btnHoverHandler(pausebtn , false));
         pausebtn.setOnMouseClicked(e -> btnClickHandler(pausebtn));
+
 
         resumebtn.setOnMouseEntered(e -> btnHoverHandler(resumebtn , true));
         resumebtn.setOnMouseExited(e -> btnHoverHandler(resumebtn , false));
         resumebtn.setOnMouseClicked(e -> btnClickHandler(resumebtn));
 
+
         queuebtn.setOnMouseEntered(e -> btnHoverHandler(queuebtn , true));
         queuebtn.setOnMouseExited(e -> btnHoverHandler(queuebtn , false));
         queuebtn.setOnMouseClicked(e -> btnClickHandler(queuebtn));
+
 
         settingbtn.setOnMouseEntered(e -> btnHoverHandler(settingbtn , true));
         settingbtn.setOnMouseExited(e -> btnHoverHandler(settingbtn , false));
@@ -226,6 +246,26 @@ public class MainViewController implements Initializable {
     private void createSystemTray(){
         if(StaticData.isShowTryIcon())
             trayIconSystem = new TrayIconSystem();
+    }
+
+
+    private void addUrl(){
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+File.separator+"AddUrl.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.getRoot()));
+
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        StaticData.setAddUrlStage(stage);
+
+        stage.show();
     }
 
 
@@ -301,7 +341,7 @@ public class MainViewController implements Initializable {
     }
 
 
-    private void btnHoverHandler(Node node , boolean isEnter){
+    public static void btnHoverHandler(Node node , boolean isEnter){
         double tovalue;
 
         if(isEnter)
