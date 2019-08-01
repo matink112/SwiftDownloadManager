@@ -2,7 +2,9 @@ package DownloadManager;
 
 import DownloadManager.controller.MainViewController;
 import DownloadManager.controller.Service;
+import DownloadManager.controller.StaticData;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -67,11 +69,9 @@ public class Main extends Application {
 
         primaryStage.show();
 
-        service = new Service(primaryStage , controller);
+        StaticData.setPrimaryStage(primaryStage);
 
-        service.start();
-
-        service.setName("Service");
+        Platform.setImplicitExit(false);
 
     }
 

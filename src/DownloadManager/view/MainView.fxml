@@ -129,7 +129,7 @@
             </JFXTabPane>
          </children>
       </Group>
-      <Group AnchorPane.rightAnchor="0.0">
+      <Group AnchorPane.bottomAnchor="386.0" AnchorPane.rightAnchor="0.0">
          <children>
             <JFXComboBox fx:id="sortComboBox" focusColor="#2c9a4d" layoutX="897.0" layoutY="96.0" promptText="Date" style="-jfx-prompt-text-fill: white;" unFocusColor="#59dbff" />
             <Group fx:id="searchGroup" focusTraversable="true" layoutX="206.0" layoutY="-3.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0">

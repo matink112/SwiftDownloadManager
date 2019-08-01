@@ -3,26 +3,21 @@ package DownloadManager.controller;
 import DownloadManager.Main;
 import DownloadManager.model.DownloadFile;
 import DownloadManager.model.Status;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import javafx.animation.*;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -30,8 +25,6 @@ import javafx.util.Duration;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,6 +108,7 @@ public class MainViewController implements Initializable {
     private Stage primaryStage;
     private ArrayList<DownloadFile> downloadFiles;
     private OptionPageController optionPageController;
+    private TrayIconSystem trayIconSystem;
 
 
 
@@ -139,9 +133,15 @@ public class MainViewController implements Initializable {
 
         initSettingDrawer();
 
+        createSystemTray();
+
     }
 
     //////////////private functions
+
+
+
+
 
     private void initBtns(){
 
@@ -151,7 +151,11 @@ public class MainViewController implements Initializable {
 
          powerbtn.setOnMouseEntered(e -> btnHoverHandler(powerbtn , true));
         powerbtn.setOnMouseExited(e -> btnHoverHandler(powerbtn , false));
-        powerbtn.setOnMouseClicked(e -> btnClickHandler(powerbtn));
+        powerbtn.setOnMouseClicked(e -> {
+            btnClickHandler(powerbtn);
+            Platform.exit();
+            SystemTray.getSystemTray().remove(StaticData.getTrayIcon());
+        });
 
         facebookbtn.setOnMouseEntered(e -> btnHoverHandler(facebookbtn , true));
         facebookbtn.setOnMouseExited(e -> btnHoverHandler(facebookbtn , false));
@@ -181,7 +185,7 @@ public class MainViewController implements Initializable {
         closebtn.setOnMouseExited(e -> btnHoverHandler(closebtn , false));
         closebtn.setOnMouseClicked(e -> {
             btnClickHandler(closebtn);
-            Platform.exit();
+            primaryStage.close();
         });
 
         addUrlbtn.setOnMouseEntered(e -> btnHoverHandler(addUrlbtn , true));
@@ -216,6 +220,12 @@ public class MainViewController implements Initializable {
 
     private void initComboBox(){
         sortComboBox.getItems().addAll("Date","Size","Name","Type");
+    }
+
+
+    private void createSystemTray(){
+        if(StaticData.isShowTryIcon())
+            trayIconSystem = new TrayIconSystem();
     }
 
 
@@ -321,7 +331,6 @@ public class MainViewController implements Initializable {
         transition.setAutoReverse(true);
 
         transition.play();
-
     }
 
 
@@ -401,6 +410,7 @@ public class MainViewController implements Initializable {
     }
 
 
+
     public Stage getPrimaryStage() {
         return primaryStage;
     }
@@ -409,4 +419,13 @@ public class MainViewController implements Initializable {
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
+
+    public TrayIconSystem getTrayIconSystem() {
+        return trayIconSystem;
+    }
+
+    public void setTrayIconSystem(TrayIconSystem trayIconSystem) {
+        this.trayIconSystem = trayIconSystem;
+    }
+
 }

@@ -42,4 +42,26 @@
 
 
 
+.icon{
+    -fx-text-fill: #FE774D;
+    -fx-padding: 10.0;
+    -fx-cursor: hand;
+}
+
+.icons-badge .badge-pane {
+    -fx-background-color:#ff4081;
+    -fx-background-radius:23.0;
+    -fx-pref-width: 23.0;
+    -fx-pref-height: 23.0;
+    -fx-alignment: center;
+}
+
+.icons-badge Label{
+    -fx-font-weight: BOLD;
+    -fx-font-size: 13.0px !important;
+    -fx-text-fill: WHITE;
+}
+
+
+
 

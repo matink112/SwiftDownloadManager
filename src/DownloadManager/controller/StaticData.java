@@ -1,11 +1,18 @@
 package DownloadManager.controller;
 
+import javafx.stage.Stage;
+
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class StaticData {
+
+    private static Stage PrimaryStage;
+
+    private static TrayIcon trayIcon=null;
 
     private static boolean showDownloadWindowPermission = true;
 
@@ -233,5 +240,21 @@ public class StaticData {
 
     public static void setProxyPass(String proxyPass) {
         StaticData.proxyPass = proxyPass;
+    }
+
+    public static Stage getPrimaryStage() {
+        return PrimaryStage;
+    }
+
+    public static void setPrimaryStage(Stage primaryStage) {
+        PrimaryStage = primaryStage;
+    }
+
+    public static TrayIcon getTrayIcon() {
+        return trayIcon;
+    }
+
+    public static void setTrayIcon(TrayIcon trayIcon) {
+        StaticData.trayIcon = trayIcon;
     }
 }
