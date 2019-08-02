@@ -1,24 +1,10 @@
 package DownloadManager.controller;
 
-import DownloadManager.Main;
-import javafx.stage.Stage;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.text.html.ImageView;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.OpenOption;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.FileAttribute;
 
 public class test {
 
@@ -31,6 +17,7 @@ public class test {
         if(a.length>3 && a[a.length-1].matches(".*[.].+")) {
             System.out.println("t");
         }
+
 
 
 

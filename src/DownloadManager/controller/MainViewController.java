@@ -197,6 +197,11 @@ public class MainViewController implements Initializable {
         closebtn.setOnMouseClicked(e -> {
             btnClickHandler(closebtn);
             primaryStage.close();
+            if(StaticData.getAddUrlStage()!= null)
+            {
+                StaticData.getAddUrlStage().close();
+                StaticData.setAddUrlStage(null);
+            }
         });
 
 

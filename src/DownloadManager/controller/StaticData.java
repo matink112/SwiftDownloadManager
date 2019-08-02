@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class StaticData {
 
@@ -54,6 +53,7 @@ public class StaticData {
     private static String proxyUserName;
 
     private static String proxyPass;
+
 
 
     private static String musicIcon="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,13H11V18A2,2" +
