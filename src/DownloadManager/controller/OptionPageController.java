@@ -166,7 +166,6 @@ public class OptionPageController implements Initializable {
 
         proxyPasswordField.setText(StaticData.getProxyPass());
 
-
         proxyField.setOnAction( e -> StaticData.setProxyHost(proxyField.getText()));
 
         socksField.setOnAction( e -> StaticData.setSocksHost(socksField.getText()));

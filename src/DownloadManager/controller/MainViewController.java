@@ -1,6 +1,7 @@
 package DownloadManager.controller;
 
 import DownloadManager.Main;
+import DownloadManager.model.Category;
 import DownloadManager.model.DownloadFile;
 import DownloadManager.model.Status;
 import com.jfoenix.controls.*;
@@ -209,7 +210,8 @@ public class MainViewController implements Initializable {
         addUrlbtn.setOnMouseExited(e -> btnHoverHandler(addUrlbtn , false));
         addUrlbtn.setOnMouseClicked(e ->{
             btnClickHandler(addUrlbtn);
-            addUrl();
+            if(StaticData.getAddUrlStage()==null)
+                addUrl();
         });
 
 
@@ -437,6 +439,10 @@ public class MainViewController implements Initializable {
         optionPageController.setPrimaryStage(primaryStage);
 
         settingLayout.setContent(loader.getRoot());
+    }
+
+    public void addNewCategory(Category cat){
+        categoryListView.getItems().add(cat.getName());
     }
 
 

@@ -66,6 +66,8 @@ public class Main extends Application {
 
         controller.setPrimaryStage(primaryStage);
 
+        StaticData.setMainController(controller);
+
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         primaryStage.show();

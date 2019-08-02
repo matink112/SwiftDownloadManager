@@ -38,6 +38,19 @@
 
 .jfx-combo-box{
     -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+
+.combo-box > .combo-box-button-container {
+    -fx-background: black;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+
+.combo-box > .list-cell {
+    -fx-text-fill: white;
 }
 
 

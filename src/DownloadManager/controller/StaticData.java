@@ -1,5 +1,6 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Category;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -7,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class StaticData {
 
@@ -53,6 +55,10 @@ public class StaticData {
     private static String proxyUserName;
 
     private static String proxyPass;
+
+    private static ArrayList<Category> categories;
+
+    private static MainViewController mainController;
 
 
 
@@ -105,7 +111,7 @@ public class StaticData {
     private static String[] applicationFormates = {"apk","appx","deb","ebuild","pisi","pkg","rpm","snap"};
 
 
-    private String[] documentFormates = {"txt","doc","xml","html","htm","docx","odt","pdf"
+    private static String[] documentFormates = {"txt","doc","xml","html","htm","docx","odt","pdf"
             ,"ps","svg","xls","xlsm","pptx","ppt","xps","potx","ppa","jpg","png","odp"};
 
 
@@ -119,6 +125,14 @@ public class StaticData {
 
         setDownloadTemporaryFolderPath(System.getProperty("user.home") + File.separator + "Downloads" +
                                         File.separator + ".temp");
+
+        categories = new ArrayList<>();
+
+        getCategories().add(new Category("Music"));
+        getCategories().add(new Category("Movie"));
+        getCategories().add(new Category("Document"));
+        getCategories().add(new Category("Program"));
+        getCategories().add(new Category("Other"));
 
     }
 
@@ -319,5 +333,111 @@ public class StaticData {
 
     public static void setAddUrlStage(Stage addUrlStage) {
         StaticData.addUrlStage = addUrlStage;
+    }
+
+    public static String getMusicIcon() {
+        return musicIcon;
+    }
+
+    public static void setMusicIcon(String musicIcon) {
+        StaticData.musicIcon = musicIcon;
+    }
+
+    public static String getMovieIcon() {
+        return movieIcon;
+    }
+
+    public static void setMovieIcon(String movieIcon) {
+        StaticData.movieIcon = movieIcon;
+    }
+
+    public static String getCompressIcon() {
+        return compressIcon;
+    }
+
+    public static void setCompressIcon(String compressIcon) {
+        StaticData.compressIcon = compressIcon;
+    }
+
+    public static String getProgramIcon() {
+        return programIcon;
+    }
+
+    public static void setProgramIcon(String programIcon) {
+        StaticData.programIcon = programIcon;
+    }
+
+    public static String getDocumentIcon() {
+        return documentIcon;
+    }
+
+    public static void setDocumentIcon(String documentIcon) {
+        StaticData.documentIcon = documentIcon;
+    }
+
+    public static String getOtherIcon() {
+        return otherIcon;
+    }
+
+    public static void setOtherIcon(String otherIcon) {
+        StaticData.otherIcon = otherIcon;
+    }
+
+    public static String[] getCompressFormates() {
+        return compressFormates;
+    }
+
+    public static void setCompressFormates(String[] compressFormates) {
+        StaticData.compressFormates = compressFormates;
+    }
+
+    public static String[] getMusicFormates() {
+        return musicFormates;
+    }
+
+    public static void setMusicFormates(String[] musicFormates) {
+        StaticData.musicFormates = musicFormates;
+    }
+
+    public static String[] getMovieFormates() {
+        return movieFormates;
+    }
+
+    public static void setMovieFormates(String[] movieFormates) {
+        StaticData.movieFormates = movieFormates;
+    }
+
+    public static String[] getApplicationFormates() {
+        return applicationFormates;
+    }
+
+    public static void setApplicationFormates(String[] applicationFormates) {
+        StaticData.applicationFormates = applicationFormates;
+    }
+
+
+    public static String[] getDocumentFormates() {
+        return documentFormates;
+    }
+
+    public static void setDocumentFormates(String[] documentFormates) {
+        StaticData.documentFormates = documentFormates;
+    }
+
+    public static ArrayList<Category> getCategories() {
+        return categories;
+    }
+
+    public static void setCategories(ArrayList<Category> categories) {
+        StaticData.categories = categories;
+    }
+
+
+    public static MainViewController getMainController() {
+        return mainController;
+    }
+
+    public static void setMainController(MainViewController mainController) {
+        StaticData.mainController = mainController;
     }
 }
