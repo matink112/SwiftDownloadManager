@@ -10,6 +10,7 @@ import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
@@ -363,6 +364,33 @@ public class ConfirmDownloadController{
 
     private void startDownload(){
 
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+File.separator+"DownloadingPage.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        DownloadingPageController controller = loader.getController();
+
+        Stage stage = new Stage();
+
+        stage.setScene(new Scene(loader.getRoot()));
+
+        confirmStage.close();
+
+        String category;
+
+        if(categoryCombo.getSelectionModel().getSelectedItem() == null)
+            category = categoryCombo.getPromptText();
+        else
+            category = categoryCombo.getSelectionModel().getSelectedItem().getName();
+
+        controller.initPage(urlField.getText() , fileNameField.getText(),
+                 category,pathField.getText(),sizeFile, stage);
+
+        stage.show();
     }
 
 

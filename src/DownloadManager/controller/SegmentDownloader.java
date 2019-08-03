@@ -1,7 +1,6 @@
 package DownloadManager.controller;
 
 import com.jfoenix.controls.JFXProgressBar;
-import com.sun.jndi.toolkit.url.UrlUtil;
 import javafx.application.Platform;
 
 import java.io.*;
@@ -31,11 +30,10 @@ public class SegmentDownloader extends Thread {
 
     private int tryCunt;
 
-    public SegmentDownloader(FileDownloader fileDownloader, String name, long segmentSize, long downloaded, long startByte
+    public SegmentDownloader(FileDownloader fileDownloader, String name, long segmentSize, long startByte
             , int segmentNumber, String url, JFXProgressBar progressBar) {
         this.fileDownloader = fileDownloader;
         this.segmentSize = segmentSize;
-        this.downloaded = downloaded;
         this.startByte = startByte;
         this.segmentNumber = segmentNumber;
         this.url = url;
@@ -51,9 +49,10 @@ public class SegmentDownloader extends Thread {
 
             downloadSegment();
 
-            if (isDownloaded)
+            if (isDownloaded()) {
+                System.out.println("done");
                 break;
-
+            }
             tryCunt++;
 
             try {
@@ -114,7 +113,7 @@ public class SegmentDownloader extends Thread {
             }
 
             if(downloaded == segmentSize)
-                isDownloaded = true;
+                setDownloaded(true);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -156,5 +155,13 @@ public class SegmentDownloader extends Thread {
         Platform.runLater( ()-> progressBar.setProgress( (downloaded * 1.0 / segmentSize) ));
 
         fileDownloader.UpdateDownloadedSize(bytes);
+    }
+
+    public boolean isDownloaded() {
+        return isDownloaded;
+    }
+
+    public void setDownloaded(boolean downloaded) {
+        isDownloaded = downloaded;
     }
 }
