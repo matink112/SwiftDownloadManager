@@ -4,15 +4,13 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.sun.jndi.toolkit.url.UrlUtil;
 import javafx.application.Platform;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.Proxy;
 import java.net.URL;
 import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,6 +27,7 @@ public class SegmentDownloader extends Thread {
     private String segmentPath;
     private String name;
     private JFXProgressBar progressBar;
+    private double speed;
 
     private int tryCunt;
 
@@ -106,12 +105,16 @@ public class SegmentDownloader extends Thread {
 
                 byteRead = fos.getChannel().transferFrom(rbc, 0, 1024);
 
-                if (byteRead == -1 || byteRead == 0)
+                if (byteRead == -1 || byteRead == 0) {
                     break;
+                }
 
                 updateReadByte(byteRead);
 
             }
+
+            if(downloaded == segmentSize)
+                isDownloaded = true;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -129,6 +132,14 @@ public class SegmentDownloader extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }else {
+
+            try {
+                FileChannel file = FileChannel.open(Paths.get(segmentPath , name));
+                downloaded = file.size();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -136,13 +147,14 @@ public class SegmentDownloader extends Thread {
 
         downloaded+=readByte;
 
-
-
-        updateUI();
+        updateUI(readByte);
     }
 
 
-    private void updateUI(){
-        progressBar.setProgress( (downloaded * 1.0 / segmentSize) );
+    private void updateUI(long bytes){
+
+        Platform.runLater( ()-> progressBar.setProgress( (downloaded * 1.0 / segmentSize) ));
+
+        fileDownloader.UpdateDownloadedSize(bytes);
     }
 }
