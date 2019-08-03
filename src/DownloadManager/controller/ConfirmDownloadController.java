@@ -290,7 +290,7 @@ public class ConfirmDownloadController{
         browsebtn.setOnAction(event -> browsebtnHandler());
     }
 
-    private Proxy getProxy(){
+    public static Proxy getProxy(){
         int port;
         if(StaticData.isUseSocksServer() || StaticData.isUseProxyServer()){
             if(StaticData.isUseProxyServer()) {
