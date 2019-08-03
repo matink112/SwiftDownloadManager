@@ -55,6 +55,8 @@ public class AddCategoryController {
 
         StaticData.getCategories().add(newCat);
 
+        comboBox.setValue(newCat);
+
         comboBox.getItems().add(newCat);
 
         StaticData.getMainController().addNewCategory(newCat);

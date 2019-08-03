@@ -1,10 +1,8 @@
 package DownloadManager.controller;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.net.*;
+import java.net.Proxy.Type;
 
 public class test {
 
@@ -12,11 +10,21 @@ public class test {
 
     public static void main(String[] args) throws IOException {
 
-        String[] a = "https://docs.oracle.com".split("/");
 
-        if(a.length>3 && a[a.length-1].matches(".*[.].+")) {
-            System.out.println("t");
-        }
+        String url ="http://dl13.f2m.co/film/Unda.2019.1080p.WEB-DL.x265.HEVC.Film2Movie_WS.mkv" ;
+
+
+        URL url1 = new URL(url);
+
+        HttpURLConnection connection = (HttpURLConnection) url1.openConnection();
+
+        connection.addRequestProperty("Range","bytes=0-2000000000");
+
+        System.out.println((connection.getResponseCode()));
+
+        System.out.println(connection.getContentLengthLong());
+
+        connection.disconnect();
 
 
 
@@ -24,16 +32,5 @@ public class test {
     }
 
 
-    private static boolean checkUrl(String url){
-        try {
-            URI url1 = new URL(url).toURI();
-        } catch (MalformedURLException e) {
-            return false;
-        } catch (URISyntaxException e) {
-            return false;
-        }
-
-        return true;
-    }
 
 }

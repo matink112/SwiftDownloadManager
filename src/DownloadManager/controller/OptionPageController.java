@@ -166,7 +166,31 @@ public class OptionPageController implements Initializable {
 
         proxyPasswordField.setText(StaticData.getProxyPass());
 
-        proxyField.setOnAction( e -> StaticData.setProxyHost(proxyField.getText()));
+        proxyField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (StaticData.isUseProxyServer())
+                if(newValue.matches(".+:[\\d]+")){
+                    StaticData.setProxyHost(newValue);
+                    proxyField.setFocusColor(Color.web("#4059a9"));
+
+                }else {
+                    proxyField.setFocusColor(Color.web("#ef153e"));
+                    StaticData.setProxyHost(null);
+                }
+
+        });
+
+        socksField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (StaticData.isUseSocksServer())
+                if(newValue.matches(".+:[\\d]+")){
+                    StaticData.setSocksHost(newValue);
+                    socksField.setFocusColor(Color.web("#4059a9"));
+
+                }else {
+                    socksField.setFocusColor(Color.web("#ef153e"));
+                    StaticData.setSocksHost(null);
+                }
+
+        });
 
         socksField.setOnAction( e -> StaticData.setSocksHost(socksField.getText()));
 
@@ -284,6 +308,7 @@ public class OptionPageController implements Initializable {
 
         showTryIconCheck.selectedProperty().addListener((observable, oldValue, newValue)
                 -> StaticData.setShowTryIcon(newValue));
+
 
     }
 

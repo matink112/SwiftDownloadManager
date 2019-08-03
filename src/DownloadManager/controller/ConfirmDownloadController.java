@@ -18,9 +18,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
+import java.net.Proxy.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
@@ -207,6 +206,7 @@ public class ConfirmDownloadController{
         URL fileUrl = null;
         int response;
         HttpURLConnection connection = null;
+        Proxy proxy= null;
 
         try {
             fileUrl = new URL(url);
@@ -216,7 +216,12 @@ public class ConfirmDownloadController{
 
         try {
 
-            connection = (HttpURLConnection) fileUrl.openConnection();
+            proxy = getProxy();
+
+            if(proxy!=null)
+                connection = (HttpURLConnection) fileUrl.openConnection((proxy));
+            else
+                connection = (HttpURLConnection) fileUrl.openConnection();
 
             response = connection.getResponseCode();
 
@@ -224,6 +229,7 @@ public class ConfirmDownloadController{
                 sizeFile = connection.getContentLengthLong();
 
 
+            System.out.println(sizeFile);
         } catch (IOException ignored) {
 
         }
@@ -253,7 +259,7 @@ public class ConfirmDownloadController{
             return String.format("%.2f", (s / (1024 * 1.0))) + " KB";
         else if (s >= 1024 * 1024 && s < Math.pow(1024, 3))
             return String.format("%.2f", s / (Math.pow(1024, 2) * 1.0)) + " MB";
-        else if (s >= Math.pow(1024,4))
+        else if (s >= Math.pow(1024,3))
             return  String.format("%.2f", (s / (Math.pow(1024, 3) * 1.0))) + " GB";
 
         return "...";
@@ -284,6 +290,33 @@ public class ConfirmDownloadController{
         browsebtn.setOnAction(event -> browsebtnHandler());
     }
 
+    private Proxy getProxy(){
+        int port;
+        if(StaticData.isUseSocksServer() || StaticData.isUseProxyServer()){
+            if(StaticData.isUseProxyServer()) {
+                String[] hp = StaticData.getProxyHost().split(":");
+
+                try {
+                    port = Integer.parseInt(hp[1]);
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+
+                return new Proxy(Type.HTTP, new InetSocketAddress(hp[0],port));
+            }else {
+                String[] hp = StaticData.getSocksHost().split(":");
+
+                try {
+                    port = Integer.parseInt(hp[1]);
+                } catch (Exception e) {
+                    return null;
+                }
+
+                return new Proxy(Type.SOCKS , new InetSocketAddress(hp[0],port));
+            }
+        }
+        return null;
+    }
 
     private void browsebtnHandler(){
         DirectoryChooser chooser = new DirectoryChooser();
@@ -334,7 +367,7 @@ public class ConfirmDownloadController{
 
 
     private void downloadLaterHandler(){
-
+        
     }
 
 
