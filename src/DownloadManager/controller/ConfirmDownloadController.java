@@ -249,7 +249,7 @@ public class ConfirmDownloadController{
     }
 
 
-    private String getSizeInFormat(long s){
+    private static String getSizeInFormat(long s){
 
         if (s==-1)
             return "Unknown";
