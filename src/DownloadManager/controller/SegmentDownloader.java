@@ -24,7 +24,8 @@ public class SegmentDownloader extends Thread {
     private String url;
     private boolean isDownloaded = false;
     private String segmentPath;
-    private String name;
+    private String segmentName;
+
     private JFXProgressBar progressBar;
     private double speed;
 
@@ -32,12 +33,13 @@ public class SegmentDownloader extends Thread {
 
     public SegmentDownloader(FileDownloader fileDownloader, String name, long segmentSize, long startByte
             , int segmentNumber, String url, JFXProgressBar progressBar) {
+        segmentPath = StaticData.getDownloadTemporaryFolderPath();
         this.fileDownloader = fileDownloader;
         this.segmentSize = segmentSize;
         this.startByte = startByte;
         this.segmentNumber = segmentNumber;
         this.url = url;
-        this.name = name + "(" + segmentNumber + ").cache";
+        this.setSegmentName(name + "(" + segmentNumber + ").cache");
         this.progressBar = progressBar;
     }
 
@@ -95,7 +97,7 @@ public class SegmentDownloader extends Thread {
 
             ReadableByteChannel rbc = Channels.newChannel(connection.getInputStream());
 
-            FileOutputStream fos = new FileOutputStream(new File(segmentPath, name), true);
+            FileOutputStream fos = new FileOutputStream(new File(segmentPath, getSegmentName()), true);
 
             long byteRead = 0;
 
@@ -108,9 +110,13 @@ public class SegmentDownloader extends Thread {
                     break;
                 }
 
+                //System.out.println(segmentNumber);
+
                 updateReadByte(byteRead);
 
             }
+
+            //updateUI(0);
 
             if(downloaded == segmentSize)
                 setDownloaded(true);
@@ -125,16 +131,16 @@ public class SegmentDownloader extends Thread {
 
     private void createSegmentFile() {
 
-        if (!Files.exists(Paths.get(segmentPath, name))) {
+        if (!Files.exists(Paths.get(segmentPath, getSegmentName()))) {
             try {
-                Files.createDirectories(Paths.get(segmentPath, name));
+                Files.createFile(Paths.get(segmentPath, getSegmentName()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else {
 
             try {
-                FileChannel file = FileChannel.open(Paths.get(segmentPath , name));
+                FileChannel file = FileChannel.open(Paths.get(segmentPath , getSegmentName()));
                 downloaded = file.size();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -152,9 +158,9 @@ public class SegmentDownloader extends Thread {
 
     private void updateUI(long bytes){
 
-        Platform.runLater( ()-> progressBar.setProgress( (downloaded * 1.0 / segmentSize) ));
+        Platform.runLater( ()-> getProgressBar().setProgress( (getDownloaded() * 1.0 / getSegmentSize()) ));
 
-        fileDownloader.UpdateDownloadedSize(bytes);
+        getFileDownloader().UpdateDownloadedSize(bytes);
     }
 
     public boolean isDownloaded() {
@@ -163,5 +169,94 @@ public class SegmentDownloader extends Thread {
 
     public void setDownloaded(boolean downloaded) {
         isDownloaded = downloaded;
+    }
+
+    public FileDownloader getFileDownloader() {
+        return fileDownloader;
+    }
+
+    public void setFileDownloader(FileDownloader fileDownloader) {
+        this.fileDownloader = fileDownloader;
+    }
+
+    public long getSegmentSize() {
+        return segmentSize;
+    }
+
+    public void setSegmentSize(long segmentSize) {
+        this.segmentSize = segmentSize;
+    }
+
+    public long getDownloaded() {
+        return downloaded;
+    }
+
+    public void setDownloaded(long downloaded) {
+        this.downloaded = downloaded;
+    }
+
+    public long getStartByte() {
+        return startByte;
+    }
+
+    public void setStartByte(long startByte) {
+        this.startByte = startByte;
+    }
+
+    public int getSegmentNumber() {
+        return segmentNumber;
+    }
+
+    public void setSegmentNumber(int segmentNumber) {
+        this.segmentNumber = segmentNumber;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getSegmentPath() {
+        return segmentPath;
+    }
+
+    public void setSegmentPath(String segmentPath) {
+        this.segmentPath = segmentPath;
+    }
+
+
+    public JFXProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public void setProgressBar(JFXProgressBar progressBar) {
+        this.progressBar = progressBar;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public int getTryCunt() {
+        return tryCunt;
+    }
+
+    public void setTryCunt(int tryCunt) {
+        this.tryCunt = tryCunt;
+    }
+
+    public String getSegmentName() {
+        return segmentName;
+    }
+
+    public void setSegmentName(String segmentName) {
+        this.segmentName = segmentName;
     }
 }
