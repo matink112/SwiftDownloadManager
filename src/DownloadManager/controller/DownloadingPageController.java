@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.Stage;
@@ -86,7 +85,7 @@ public class DownloadingPageController implements Initializable {
 
         fileDownloader.start();
 
-        this.stage = stage;
+        this.setStage(stage);
 
     }
 
@@ -102,9 +101,9 @@ public class DownloadingPageController implements Initializable {
 
     public void initbtns(){
 
-        closebtn.setOnMouseClicked(event -> stage.close());
+        closebtn.setOnMouseClicked(event -> getStage().close());
 
-        minimizebtn.setOnMouseClicked(e->stage.setIconified(true));
+        minimizebtn.setOnMouseClicked(e-> getStage().setIconified(true));
 
         closebtn.setOnMouseEntered(event -> MainViewController.btnHoverHandler(closebtn,true));
         closebtn.setOnMouseExited(event -> MainViewController.btnHoverHandler(closebtn,false));
@@ -124,7 +123,7 @@ public class DownloadingPageController implements Initializable {
 
         System.gc();
 
-        stage.close();
+        getStage().close();
     }
 
 
@@ -162,8 +161,8 @@ public class DownloadingPageController implements Initializable {
         });
 
         header.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() - xOffset);
-            stage.setY(event.getScreenY() - yOffset);
+            getStage().setX(event.getScreenX() - xOffset);
+            getStage().setY(event.getScreenY() - yOffset);
         });
     }
 
@@ -173,5 +172,13 @@ public class DownloadingPageController implements Initializable {
         initbtns();
 
         moveStageHandler();
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

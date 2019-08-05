@@ -1,11 +1,18 @@
 package DownloadManager.controller;
 
 
+import DownloadManager.Main;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Arc;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -95,6 +102,12 @@ public class FileDownloader extends Thread{
                 updateUI();
                 System.out.println(downloadedSize);
                 mergeFiles();
+
+                Platform.runLater(()-> controller.getStage().close());
+
+                if(StaticData.isShowDownloadCompeletePermission())
+                    showCompeleteDownloadPage();
+
                 break;
             }
         }
@@ -102,6 +115,31 @@ public class FileDownloader extends Thread{
     }
 
 
+
+    private void showCompeleteDownloadPage(){
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator+"DownloadCompletePage.fxml"));
+
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        DownloadCompleteController completeControllet = loader.getController();
+
+        Platform.runLater(()-> {
+            Stage stage = new Stage();
+
+            stage.setScene(new Scene(loader.getRoot()));
+
+            completeControllet.initPage(name, folderPath, stage);
+
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            stage.show();
+        });
+    }
 
 
     public void UpdateDownloadedSize(long size){
@@ -190,7 +228,6 @@ public class FileDownloader extends Thread{
 
             JFXProgressBar progressBar =  new JFXProgressBar();
             controller.addProgressbar(progressBar);
-            progressBar.setProgress(0.3);
 
             if (i==segMentNumber-1){
                 eachSegmentSize = size - start;
