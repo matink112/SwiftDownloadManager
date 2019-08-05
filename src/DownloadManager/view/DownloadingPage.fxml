@@ -29,7 +29,7 @@
       <Arc fx:id="arcProgress" cacheHint="QUALITY" disable="true" fill="#33f549" layoutX="82.0" layoutY="163.0" nodeOrientation="LEFT_TO_RIGHT" radiusX="70.0" radiusY="70.0" startAngle="90.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" type="ROUND" />
       <Arc blendMode="DARKEN" fill="#242424" layoutX="82.0" layoutY="163.0" length="360.0" radiusX="65.0" radiusY="65.0" startAngle="45.0" stroke="RED" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="0.0" type="ROUND" />
       <Line endX="45.0" endY="5.0" layoutX="83.0" layoutY="163.0" startX="-45.0" startY="5.0" stroke="#54ff62" />
-      <Label fx:id="progressPersentlbl" alignment="CENTER" layoutX="38.0" layoutY="128.0" prefHeight="34.0" prefWidth="89.0" text="100.00%" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="progressPersentlbl" alignment="CENTER" layoutX="38.0" layoutY="128.0" prefHeight="34.0" prefWidth="89.0" text="0%" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>

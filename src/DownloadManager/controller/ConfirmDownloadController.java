@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.SVGPath;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
@@ -137,7 +138,10 @@ public class ConfirmDownloadController{
 
     private void fileName(String url){
         String[] a = url.split( "/");
-        fileNameField.setText(a[a.length-1]);
+
+        String as =  a[a.length-1].replaceAll("%20|%30|%40|%10" ," ");
+
+        fileNameField.setText(as);
     }
 
 
@@ -375,6 +379,8 @@ public class ConfirmDownloadController{
         DownloadingPageController controller = loader.getController();
 
         Stage stage = new Stage();
+
+        stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setScene(new Scene(loader.getRoot()));
 

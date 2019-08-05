@@ -9,6 +9,7 @@ import javafx.scene.shape.Arc;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,8 +54,20 @@ public class FileDownloader extends Thread{
         downloaders = new ArrayList<>();
 
         segMentNumber = StaticData.getSegmentPartDownload();
+
+
     }
 
+    public void addDownloadedBytes(long bytes){
+        downloadedSize += bytes;
+    }
+
+    public void stopDownload(){
+        for (SegmentDownloader a : downloaders)
+            a.stop();
+
+        stop();
+    }
 
     public void run(){
 
@@ -87,6 +100,9 @@ public class FileDownloader extends Thread{
         }
 
     }
+
+
+
 
     public void UpdateDownloadedSize(long size){
         downloadedSize += size;
@@ -168,6 +184,8 @@ public class FileDownloader extends Thread{
         long start = 0;
         long eachSegmentSize = size / segMentNumber;
 
+        controller.deleteProgressIfExist();
+
         for(int i=0 ; i< segMentNumber ; i++){
 
             JFXProgressBar progressBar =  new JFXProgressBar();
@@ -187,6 +205,23 @@ public class FileDownloader extends Thread{
 
             start += eachSegmentSize;
         }
+    }
+
+
+    public void pauseDownload(){
+        for(SegmentDownloader a : downloaders) {
+            try {
+                a.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

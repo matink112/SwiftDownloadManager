@@ -3,6 +3,7 @@ package DownloadManager.controller;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
 
+import javax.net.ssl.SSLException;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -28,6 +29,8 @@ public class SegmentDownloader extends Thread {
 
     private JFXProgressBar progressBar;
     private double speed;
+
+    private boolean isStopDownload = false;
 
     private int tryCunt;
 
@@ -106,6 +109,8 @@ public class SegmentDownloader extends Thread {
 
                 byteRead = fos.getChannel().transferFrom(rbc, 0, 1024);
 
+
+
                 if (byteRead == -1 || byteRead == 0) {
                     break;
                 }
@@ -121,9 +126,10 @@ public class SegmentDownloader extends Thread {
             if(downloaded == segmentSize)
                 setDownloaded(true);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        }catch (SSLException ignored){
+
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -142,11 +148,13 @@ public class SegmentDownloader extends Thread {
             try {
                 FileChannel file = FileChannel.open(Paths.get(segmentPath , getSegmentName()));
                 downloaded = file.size();
+                fileDownloader.addDownloadedBytes(downloaded);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
 
     private void updateReadByte(long readByte){
 
@@ -258,5 +266,13 @@ public class SegmentDownloader extends Thread {
 
     public void setSegmentName(String segmentName) {
         this.segmentName = segmentName;
+    }
+
+    public boolean isStopDownload() {
+        return isStopDownload;
+    }
+
+    public void setStopDownload(boolean stopDownload) {
+        isStopDownload = stopDownload;
     }
 }
