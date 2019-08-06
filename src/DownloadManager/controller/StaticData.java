@@ -92,12 +92,7 @@ public class StaticData {
             "0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z";
 
 
-
-
-
-
-
-    private static String[] compressFormates = {"7z","ace","s7z","afa"
+    private static String[] compressFormates = {"zip","7z","ace","s7z","afa"
             ,"alz", "arc","ark","b6z","car","cfs","dd","dgc","pit","rar"
             ,"rk","tar","gz","Z","bz2","lzma","txz","xz"};
 

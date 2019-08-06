@@ -107,6 +107,9 @@ public class SegmentDownloader extends Thread {
 
             while (byteRead >= 0) {
 
+                if(downloaded == segmentSize)
+                    break;
+
                 byteRead = fos.getChannel().transferFrom(rbc, 0, 1024);
 
 
