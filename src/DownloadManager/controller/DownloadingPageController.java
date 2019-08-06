@@ -1,5 +1,7 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.FileModel;
+import DownloadManager.model.Status;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
@@ -64,11 +66,13 @@ public class DownloadingPageController implements Initializable {
     private boolean donwloadCompelete;
 
     private FileDownloader fileDownloader;
+    private FileModel fileModel;
 
 
 
-    public void initPage(String url ,String name , String category ,
-                         String filePath , long size , Stage stage){
+
+    public void initPage(String url , String name , String category ,
+                         String filePath , long size , Stage stage , FileModel fileModel){
 
         this.name = name;
 
@@ -76,13 +80,13 @@ public class DownloadingPageController implements Initializable {
         this.filePath = filePath;
         this.category = category;
         this.size = size;
+        this.fileModel = fileModel;
 
 
         fileNamelbl.setText(name);
 
         fileDownloader = new FileDownloader(name , filePath , url , category , size , arcProgress ,
-                progressPersentlbl , speedlbl,downloadedlbl , this);
-
+                progressPersentlbl , speedlbl,downloadedlbl , this, fileModel);
         fileDownloader.start();
 
         this.setStage(stage);
@@ -133,17 +137,21 @@ public class DownloadingPageController implements Initializable {
         pausebtn.setText("Resume");
 
         pausebtn.setOnAction(event ->  resumeBtnHandler());
+
+        fileModel.setStatus(Status.Pause);
     }
 
     private void resumeBtnHandler(){
         fileDownloader = new FileDownloader(name , filePath , url , category , size , arcProgress ,
-                progressPersentlbl , speedlbl,downloadedlbl , this);
+                progressPersentlbl , speedlbl,downloadedlbl , this,fileModel);
 
         fileDownloader.start();
 
         pausebtn.setText("Pause");
 
         pausebtn.setOnAction(event -> pausBtnHandler());
+
+        fileModel.setStatus(Status.Downloading);
     }
 
 

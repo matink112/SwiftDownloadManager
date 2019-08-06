@@ -2,6 +2,8 @@ package DownloadManager.controller;
 
 
 import DownloadManager.Main;
+import DownloadManager.model.FileModel;
+import DownloadManager.model.Status;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -40,9 +42,12 @@ public class FileDownloader extends Thread{
 
     DownloadingPageController controller;
 
+    private FileModel fileModel;
+
     public FileDownloader(String name, String folderPath, String url,
                           String category, long size , Arc arcProgress , Label persentlbl,
-                          Label speedlbl , Label downloadedlbl, DownloadingPageController controller) {
+                          Label speedlbl , Label downloadedlbl, DownloadingPageController controller,
+                          FileModel fileModel) {
 
         this.name = name;
         this.folderPath = folderPath;
@@ -54,6 +59,7 @@ public class FileDownloader extends Thread{
         this.persentlbl = persentlbl;
         this.speedlbl = speedlbl;
         this.downloadedlbl = downloadedlbl;
+        this.fileModel = fileModel;
         lastDownloadedSize = 0;
 
         sizeInFormat = ConfirmDownloadController.getSizeInFormat(size);
@@ -61,6 +67,8 @@ public class FileDownloader extends Thread{
         downloaders = new ArrayList<>();
 
         segMentNumber = StaticData.getSegmentPartDownload();
+
+
 
 
     }
@@ -174,15 +182,18 @@ public class FileDownloader extends Thread{
     }
 
     private void updateUI(){
-
         Platform.runLater( () -> {
+
             arcProgress.setLength((downloadedSize * 1.0 / size) * 360);
+
             persentlbl.setText((String.format("%.2f", ((downloadedSize * 1.0 / size) * 100))+"%"));
 
             String a = ConfirmDownloadController.getSizeInFormat(downloadedSize)+" / "+sizeInFormat;
 
             downloadedlbl.setText(a);
         });
+
+        fileModel.setDownloadedSize(downloadedSize);
 
     }
 
@@ -204,6 +215,8 @@ public class FileDownloader extends Thread{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        fileModel.setStatus(Status.Finished);
 
     }
 

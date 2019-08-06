@@ -2,7 +2,6 @@ package DownloadManager.controller;
 
 import DownloadManager.Main;
 import DownloadManager.model.Category;
-import DownloadManager.model.DownloadFile;
 import DownloadManager.model.Status;
 import com.jfoenix.controls.*;
 import javafx.animation.*;
@@ -11,15 +10,11 @@ import javafx.beans.value.WritableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
@@ -114,7 +109,7 @@ public class MainViewController implements Initializable {
     WritableValue<Double> searchFieldWidth;
     WritableValue<Double> settingDrawerAnchor;
     private Stage primaryStage;
-    private ArrayList<DownloadFile> downloadFiles;
+
     private OptionPageController optionPageController;
     private TrayIconSystem trayIconSystem;
 
@@ -124,10 +119,7 @@ public class MainViewController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
-        downloadFiles = new ArrayList<>();
 
-        downloadFiles.add(new DownloadFile("http://up.nafismusic.ir/Nafis/Matias%20Puumala%20-%20Last%20Light%20.mp3"
-                ,5.9 , Status.Finished ,new Date()));
 
         initSearchField();
 
@@ -137,7 +129,7 @@ public class MainViewController implements Initializable {
 
         initBtns();
 
-        initDownloadList();
+
 
         initSettingDrawer();
 
@@ -381,26 +373,7 @@ public class MainViewController implements Initializable {
     }
 
 
-    private void initDownloadList(){
-        for(DownloadFile file : downloadFiles){
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator + "DownloadListItem.fxml"));
 
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            VBox vBox = loader.getRoot();
-
-            AnchorPane anchorPane = (AnchorPane) vBox.getChildren().get(0);
-
-            anchorPane.prefWidthProperty().bind(vBox.widthProperty());
-
-            allDownloadList.getItems().add(vBox);
-
-        }
-    }
 
 
     private void initSettingDrawer(){
@@ -479,4 +452,27 @@ public class MainViewController implements Initializable {
         this.trayIconSystem = trayIconSystem;
     }
 
+    public JFXListView<VBox> getAllDownloadList() {
+        return allDownloadList;
+    }
+
+    public void setAllDownloadList(JFXListView<VBox> allDownloadList) {
+        this.allDownloadList = allDownloadList;
+    }
+
+    public JFXListView<VBox> getInCompleteDownloadList() {
+        return inCompleteDownloadList;
+    }
+
+    public void setInCompleteDownloadList(JFXListView<VBox> inCompleteDownloadList) {
+        this.inCompleteDownloadList = inCompleteDownloadList;
+    }
+
+    public JFXListView<VBox> getCompleteDownloadList() {
+        return completeDownloadList;
+    }
+
+    public void setCompleteDownloadList(JFXListView<VBox> completeDownloadList) {
+        this.completeDownloadList = completeDownloadList;
+    }
 }

@@ -1,6 +1,7 @@
 package DownloadManager.controller;
 
 import DownloadManager.model.Category;
+import DownloadManager.model.FileModel;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -59,6 +60,8 @@ public class StaticData {
     private static ArrayList<Category> categories;
 
     private static MainViewController mainController;
+
+    private static ArrayList<FileModel> fileModels;
 
 
 
@@ -129,6 +132,8 @@ public class StaticData {
         getCategories().add(new Category("Program"));
         getCategories().add(new Category("Other"));
 
+
+        setFileModels(new ArrayList<>());
     }
 
 
@@ -434,5 +439,13 @@ public class StaticData {
 
     public static void setMainController(MainViewController mainController) {
         StaticData.mainController = mainController;
+    }
+
+    public static ArrayList<FileModel> getFileModels() {
+        return fileModels;
+    }
+
+    public static void setFileModels(ArrayList<FileModel> fileModels) {
+        StaticData.fileModels = fileModels;
     }
 }

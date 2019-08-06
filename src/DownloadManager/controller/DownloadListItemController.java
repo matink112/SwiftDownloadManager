@@ -1,5 +1,8 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.FileModel;
+import DownloadManager.model.Status;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -23,17 +26,35 @@ public class DownloadListItemController implements Initializable{
     @FXML
     private Label datelbl;
 
+    private FileModel fileModel;
+    private String size;
+    private String downloadedSize;
 
-    public void initValues(String fileName , String Date, String Status){
+
+    public void initValues(String fileName , long size , long downloadedSize, String Date, String Status , FileModel fileModel){
         namelbl.setText(fileName);
-        datelbl.setText(Date);
         statuslbl.setText(Status);
+        this.fileModel = fileModel;
+
+        this.size = ConfirmDownloadController.getSizeInFormat(size);
+        datelbl.setText(Date);
+
+        this.downloadedSize = ConfirmDownloadController.getSizeInFormat(downloadedSize);
+
+        updateStatusLable(Status , this.downloadedSize);
+
+        icon.setContent(fileModel.getIcon());
+    }
+
+    public void updateStatusLable(String status , String downloadedSize ){
+        String aa = status+"  "+downloadedSize+" / "+size;
+        Platform.runLater(()->statuslbl.setText(aa));
+
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
-
 
 }

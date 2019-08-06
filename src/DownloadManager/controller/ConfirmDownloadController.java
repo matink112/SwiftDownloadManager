@@ -2,12 +2,10 @@ package DownloadManager.controller;
 
 import DownloadManager.Main;
 import DownloadManager.model.Category;
+import DownloadManager.model.FileModel;
+import DownloadManager.model.Status;
 import com.jfoenix.controls.*;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,14 +15,13 @@ import javafx.scene.shape.SVGPath;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.*;
 import java.net.Proxy.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.text.DecimalFormat;
+import java.util.Date;
 
 public class ConfirmDownloadController{
 
@@ -386,17 +383,19 @@ public class ConfirmDownloadController{
 
         confirmStage.close();
 
-        String category;
-
-        if(categoryCombo.getSelectionModel().getSelectedItem() == null)
-            category = categoryCombo.getPromptText();
-        else
-            category = categoryCombo.getSelectionModel().getSelectedItem().getName();
+        String category = getselectedCategory();
 
         controller.initPage(urlField.getText() , fileNameField.getText(),
-                 category,pathField.getText(),sizeFile, stage);
+                 category,pathField.getText(),sizeFile, stage, getFileModel());
 
         stage.show();
+    }
+
+    private String getselectedCategory(){
+        if(categoryCombo.getSelectionModel().getSelectedItem() == null)
+            return categoryCombo.getPromptText();
+        else
+            return categoryCombo.getSelectionModel().getSelectedItem().getName();
     }
 
 
@@ -415,6 +414,17 @@ public class ConfirmDownloadController{
             confirmStage.setX(event.getScreenX() - xOffset);
             confirmStage.setY(event.getScreenY() - yOffset);
         });
+    }
+
+    private FileModel getFileModel(){
+
+        for(FileModel a : StaticData.getFileModels())
+            if(a.getUrl().equals(urlField.getText()))
+                return a;
+
+        return new FileModel(fileNameField.getText() , new Date() ,sizeFile , urlField.getText(),getselectedCategory()
+                ,pathField.getText()+File.separator+fileNameField ,0,
+                Status.Downloading,fileIcon.getContent());
     }
 
 
