@@ -1,12 +1,11 @@
 package DownloadManager.controller;
 
 
-import DownloadManager.Main;
+import DownloadManager.App;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -15,10 +14,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -126,7 +123,7 @@ public class FileDownloader extends Thread{
 
     private void showCompeleteDownloadPage(){
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator+"DownloadCompletePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+ File.separator+"DownloadCompletePage.fxml"));
 
         try {
             loader.load();
@@ -202,7 +199,7 @@ public class FileDownloader extends Thread{
         createDirectoryIfDoesNotExist(folderPath , name);
 
         try {
-            FileOutputStream fos = new FileOutputStream(new java.io.File(folderPath,
+            FileOutputStream fos = new FileOutputStream(new File(folderPath,
                     name) , true);
 
 

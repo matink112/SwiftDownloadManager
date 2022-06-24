@@ -1,8 +1,7 @@
 package DownloadManager.controller;
 
-import DownloadManager.Main;
+import DownloadManager.App;
 import DownloadManager.model.Category;
-import DownloadManager.model.Status;
 import com.jfoenix.controls.*;
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -26,8 +25,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 
 public class MainViewController implements Initializable {
@@ -249,7 +246,7 @@ public class MainViewController implements Initializable {
 
 
     private void addUrl(){
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+File.separator+"AddUrl.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view"+File.separator+"AddUrl.fxml"));
 
         try {
             loader.load();
@@ -399,7 +396,7 @@ public class MainViewController implements Initializable {
 
     private void initSettingLayout(){
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view" + File.separator + "optionPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view" + File.separator + "optionPage.fxml"));
 
         try {
             loader.load();

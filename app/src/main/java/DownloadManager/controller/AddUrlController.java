@@ -1,6 +1,6 @@
 package DownloadManager.controller;
 
-import DownloadManager.Main;
+import DownloadManager.App;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -104,7 +104,7 @@ public class AddUrlController implements Initializable {
 
 
     private void showConfirmDownloadPage(){
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator+
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view"+ File.separator+
                 "ConfirmDownload.fxml"));
 
 

@@ -1,6 +1,6 @@
 package DownloadManager.controller;
 
-import DownloadManager.Main;
+import DownloadManager.App;
 import DownloadManager.model.Category;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
@@ -342,7 +342,7 @@ public class ConfirmDownloadController{
 
     private void addCategoryHandler(){
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+File.separator
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+File.separator
                 +"AddCategory.fxml"));
 
         try {
@@ -365,7 +365,7 @@ public class ConfirmDownloadController{
 
     private void startDownload(){
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+File.separator+"DownloadingPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+File.separator+"DownloadingPage.fxml"));
 
         try {
             loader.load();

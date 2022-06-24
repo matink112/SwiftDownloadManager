@@ -1,18 +1,12 @@
 package DownloadManager.controller;
 
-import DownloadManager.Main;
-import com.jfoenix.controls.JFXSnackbar;
-import javafx.application.Application;
+import DownloadManager.App;
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -47,7 +41,7 @@ public class TrayIconSystem {
 
         systemTray = SystemTray.getSystemTray();
 
-        ImageIcon imageIcon = new ImageIcon(Main.class.getResource("view"+ File.separator+"trayicon.png"));
+        ImageIcon imageIcon = new ImageIcon(App.class.getResource("view"+ File.separator+"trayicon.png"));
         Image image = imageIcon.getImage();
 
 

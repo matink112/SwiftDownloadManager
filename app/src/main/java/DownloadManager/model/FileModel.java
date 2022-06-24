@@ -1,10 +1,9 @@
 package DownloadManager.model;
 
-import DownloadManager.Main;
+import DownloadManager.App;
 import DownloadManager.controller.ConfirmDownloadController;
 import DownloadManager.controller.DownloadListItemController;
 import DownloadManager.controller.StaticData;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -57,7 +56,7 @@ public class FileModel {
 
     private void createDownloadList(){
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("view"+ File.separator + "DownloadListItem.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+ File.separator + "DownloadListItem.fxml"));
 
         try {
             loader.load();

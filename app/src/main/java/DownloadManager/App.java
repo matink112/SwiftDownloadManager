@@ -5,19 +5,17 @@ import DownloadManager.controller.Service;
 import DownloadManager.controller.StaticData;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
-public class Main extends Application {
+public class App extends Application {
 
     private double xOffset =0;
     private double yOffset =0;
@@ -29,7 +27,7 @@ public class Main extends Application {
     }
 
     public static void setService(Service service) {
-        Main.service = service;
+        App.service = service;
     }
 
 
@@ -38,10 +36,13 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader();
 
+        URL location = getClass().getResource("/view"+ File.separator +"MainView.fxml");
+        System.out.println(location);
 
-        loader.setLocation(Main.class.getResource("view"+ File.separator +"MainView.fxml"));
+        loader.setLocation(location);
 
         try{
+            System.out.println("is here");
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();

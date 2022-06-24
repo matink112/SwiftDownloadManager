@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.DownloadListItemController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="54.0" prefWidth="653.0">
+         <children>
+            <SVGPath fx:id="icon" content="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,13H11V18A2,2 0 0,1 9,20A2,2 0 0,1 7,18A2,2 0 0,1 9,16C9.4,16 9.7,16.1 10,16.3V11H13V13M13,9V3.5L18.5,9H13Z" fill="#276368" layoutX="15.0" layoutY="14.0" stroke="WHITE" style="-fx-scale-x: 2; -fx-scale-y: 2;" AnchorPane.bottomAnchor="16.999999284744263" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="14.792893171310425" />
+            <Label fx:id="namelbl" layoutX="58.0" layoutY="7.0" prefHeight="19.0" prefWidth="581.0" text="http://up.nafismusic.ir/Nafis/Matias%20Puumala%20-%20Last%20Light%20.mp3" AnchorPane.leftAnchor="58.0" AnchorPane.topAnchor="7.0" />
+            <Label fx:id="statuslbl" layoutX="58.0" layoutY="29.31066131591797" text="Finished    5.9 MB" AnchorPane.bottomAnchor="6.689338684082031" AnchorPane.leftAnchor="58.0" />
+            <Label fx:id="datelbl" layoutX="584.0" layoutY="29.0" text="2019/07/27" AnchorPane.rightAnchor="14.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" prefWidth="411.0" style="-fx-background-color: #242424; -fx-text-fill: white;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.AddCategoryController">
+   <children>
+      <Label layoutX="6.0" layoutY="14.0" text="Category Name :" textFill="WHITE" />
+      <JFXTextField fx:id="catField" focusColor="#dd3838" layoutX="117.0" layoutY="9.0" prefHeight="26.0" prefWidth="249.0" style="-fx-text-fill: white;" unFocusColor="#a4ff8f" />
+      <JFXButton fx:id="addbtn" buttonType="RAISED" layoutX="370.0" layoutY="13.0" ripplerFill="#19fae8" style="-fx-background-color: green;" text="+" textFill="WHITE" />
+   </children>
+</AnchorPane>
