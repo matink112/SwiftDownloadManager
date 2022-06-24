@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="580.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.ConfirmDownloadController">
+   <children>
+      <Group layoutX="-5.0" layoutY="35.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="27.0">
+         <children>
+            <JFXComboBox fx:id="categoryCombo" layoutX="99.0" layoutY="101.0" prefHeight="0.0" prefWidth="142.0" style="-fx-text-fill: white; -jfx-prompt-text-fill: white;" stylesheets="@../css/theme.css" />
+            <Label fx:id="sizelbl" alignment="CENTER" layoutX="448.0" layoutY="147.0" prefHeight="16.0" prefWidth="110.0" textFill="WHITE" />
+            <JFXButton fx:id="addCatbtn" buttonType="RAISED" layoutX="250.0" layoutY="101.0" mnemonicParsing="false" text="+" textFill="WHITE" />
+            <JFXTextField fx:id="pathField" editable="false" layoutX="100.0" layoutY="142.0" prefHeight="26.0" prefWidth="302.0" style="-fx-text-fill: white;" />
+            <Label layoutX="24.0" layoutY="106.0" text="Category :" textFill="WHITE" />
+            <Label layoutX="34.0" layoutY="147.0" text="Save As :" textFill="WHITE" />
+            <JFXTextField fx:id="urlField" editable="false" layoutX="93.0" layoutY="16.0" prefHeight="26.0" prefWidth="448.0" style="-fx-text-fill: white;" />
+            <AnchorPane layoutX="464.0" layoutY="62.0" prefHeight="87.0" prefWidth="76.0" AnchorPane.bottomAnchor="24.0">
+               <children>
+                  <SVGPath fx:id="fileIcon" content="M40,60 C42,48 44,30 25,32" fill="WHITE" layoutX="5.0" layoutY="-2.0" scaleX="2.0" scaleY="2.0" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="29.76557159423828" AnchorPane.topAnchor="29.846580505371094" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="54.0" layoutY="21.0" text="URL :" textFill="WHITE" />
+            <JFXTextField fx:id="fileNameField" layoutX="96.0" layoutY="56.0" prefHeight="28.0" prefWidth="312.0" style="-fx-text-fill: white;" />
+            <Label layoutX="57.0" layoutY="61.0" text="File :" textFill="WHITE" />
+            <JFXProgressBar fx:id="progressbar" layoutX="457.0" layoutY="159.0" prefHeight="0.0" prefWidth="92.0" progress="0.0" />
+         </children>
+      </Group>
+      <AnchorPane fx:id="headerTab" layoutX="140.0" layoutY="8.0" prefHeight="18.0" prefWidth="580.0" style="-fx-background-color: #707070;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="222.0" layoutY="8.0" text="Download Manager" textFill="WHITE" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="8.0">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <SVGPath fx:id="minimizebtn" content="M20,14H4V10H20" fill="WHITE" layoutX="521.0" layoutY="7.0" pickOnBounds="true" stroke="TRANSPARENT" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="16.0" />
+            <SVGPath fx:id="closebtn" content="M19,3H16.3H7.7H5A2,2 0 0,0 3,5V7.7V16.4V19A2,2 0 0,0 5,21H7.7H16.4H19A2,2 0 0,0 21,19V16.3V7.7V5A2,2 0 0,0 19,3M15.6,17L12,13.4L8.4,17L7,15.6L10.6,12L7,8.4L8.4,7L12,10.6L15.6,7L17,8.4L13.4,12L17,15.6L15.6,17Z" fill="#fffdfd" layoutX="547.0" layoutY="6.0" pickOnBounds="true" stroke="TRANSPARENT" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="8.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="19.0" layoutY="217.0">
+         <children>
+            <JFXButton fx:id="startDownbtn" buttonType="RAISED" disable="true" layoutX="208.0" layoutY="11.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#91ffe5" style="-fx-background-color: green;" text="Start Download" textFill="WHITE" />
+            <JFXButton fx:id="cancelbtn" buttonType="RAISED" layoutX="397.0" layoutY="11.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="RED" text="Cancel" textFill="WHITE" />
+            <JFXButton fx:id="downlaterbtn" buttonType="RAISED" layoutX="15.0" layoutY="11.0" prefHeight="26.0" prefWidth="131.0" ripplerFill="#d6fc41" text="Download Later" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <JFXButton fx:id="browsebtn" buttonType="RAISED" layoutX="402.0" layoutY="184.0" prefHeight="26.0" prefWidth="20.0" text="..." textFill="WHITE" />
+   </children>
+</AnchorPane>

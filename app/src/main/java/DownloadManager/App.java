@@ -17,6 +17,7 @@ import java.net.URL;
 
 public class App extends Application {
 
+    String sepChar = File.separator;
     private double xOffset =0;
     private double yOffset =0;
 
@@ -36,13 +37,10 @@ public class App extends Application {
 
         FXMLLoader loader = new FXMLLoader();
 
-        URL location = getClass().getResource("/view"+ File.separator +"MainView.fxml");
-        System.out.println(location);
-
+        URL location = getClass().getResource(String.format("%sfxml%sMainView.fxml", sepChar, sepChar));
         loader.setLocation(location);
 
         try{
-            System.out.println("is here");
             loader.load();
         } catch (IOException e) {
             e.printStackTrace();
