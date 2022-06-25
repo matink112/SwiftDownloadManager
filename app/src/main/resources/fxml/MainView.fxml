@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTabPane?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import java.net.URL?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.effect.Blend?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.MainViewController">
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.MainViewController">
    <children>
       <AnchorPane fx:id="root" prefHeight="513.0" prefWidth="1027.0" style="-fx-background-color: #101010; -fx-color-label-visible: white; -fx-text-fill: white;" stylesheets="@../css/theme.css">
          <children>
-            <Group layoutX="12.0" layoutY="-3.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="18.0">
+            <Group layoutX="13.0" layoutY="-3.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="19.0">
                <children>
-                  <Label layoutX="104.0" layoutY="51.0" text="2019" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold Italic" size="26.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="13.0" layoutY="21.0" text="Download Manager" textFill="WHITE">
+                  <Label layoutX="13.0" layoutY="21.0" text="Swift Download Manager" textFill="WHITE">
                      <font>
                         <Font name="System Bold Italic" size="26.0" />
                      </font>
@@ -93,7 +77,7 @@
                   </MenuBar>
                </children>
             </Group>
-            <Group AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
+            <Group AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="78.0">
                <children>
                   <JFXListView fx:id="categoryListView" layoutY="129.0" prefHeight="338.0" prefWidth="156.0" style="-fx-background-color: #404040;" styleClass="category-list">
                      <effect>
@@ -137,7 +121,7 @@
                   </JFXTabPane>
                </children>
             </Group>
-            <Group AnchorPane.bottomAnchor="386.0" AnchorPane.rightAnchor="0.0">
+            <Group AnchorPane.bottomAnchor="386.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="81.0">
                <children>
                   <JFXComboBox fx:id="sortComboBox" focusColor="#2c9a4d" layoutX="897.0" layoutY="96.0" promptText="Date" style="-jfx-prompt-text-fill: white; -fx-text-fiil: white;" unFocusColor="#59dbff" />
                   <Group fx:id="searchGroup" focusTraversable="true" layoutX="206.0" layoutY="-3.0" pickOnBounds="true" AnchorPane.rightAnchor="0.0">

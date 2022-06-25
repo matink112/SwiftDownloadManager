@@ -42,7 +42,7 @@ public class TrayIconSystem {
 
         systemTray = SystemTray.getSystemTray();
 
-        URL location = Utils.getResourceLocation("image", "trayicon", "png");
+        URL location = Utils.getResourceLocation("image", "tray", "png");
         ImageIcon imageIcon = new ImageIcon(location);
         Image image = imageIcon.getImage();
 
