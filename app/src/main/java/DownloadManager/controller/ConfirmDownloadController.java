@@ -365,13 +365,7 @@ public class ConfirmDownloadController{
 
     private void startDownload(){
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+File.separator+"DownloadingPage.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("DownloadingPage");
 
         DownloadingPageController controller = loader.getController();
 

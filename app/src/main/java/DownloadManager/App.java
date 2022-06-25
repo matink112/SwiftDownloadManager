@@ -3,6 +3,7 @@ package DownloadManager;
 import DownloadManager.controller.MainViewController;
 import DownloadManager.controller.Service;
 import DownloadManager.controller.StaticData;
+import DownloadManager.controller.Utils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -35,16 +36,7 @@ public class App extends Application {
     @Override
     public void start(final Stage primaryStage)  {
 
-        FXMLLoader loader = new FXMLLoader();
-
-        URL location = getClass().getResource(String.format("%sfxml%sMainView.fxml", sepChar, sepChar));
-        loader.setLocation(location);
-
-        try{
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("MainView");
 
         StackPane root = loader.getRoot();
 

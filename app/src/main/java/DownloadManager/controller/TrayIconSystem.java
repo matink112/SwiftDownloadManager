@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -41,12 +42,11 @@ public class TrayIconSystem {
 
         systemTray = SystemTray.getSystemTray();
 
-        ImageIcon imageIcon = new ImageIcon(App.class.getResource("view"+ File.separator+"trayicon.png"));
+        URL location = Utils.getResourceLocation("image", "trayicon", "png");
+        ImageIcon imageIcon = new ImageIcon(location);
         Image image = imageIcon.getImage();
 
-
         mainPopUpMenu = new PopupMenu();
-
 
         exitbtn = new MenuItem("Exit");
         exitbtn.addActionListener(e->closeProgram());

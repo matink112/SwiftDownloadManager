@@ -101,6 +101,7 @@ public class MainViewController implements Initializable {
     @FXML
     private StackPane stackPane;
 
+    private String sepChar = File.separator;
 
 
     WritableValue<Double> searchFieldWidth;
@@ -246,13 +247,8 @@ public class MainViewController implements Initializable {
 
 
     private void addUrl(){
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view"+File.separator+"AddUrl.fxml"));
 
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("AddUrl");
 
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.getRoot()));
@@ -396,7 +392,8 @@ public class MainViewController implements Initializable {
 
     private void initSettingLayout(){
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view" + File.separator + "optionPage.fxml"));
+        URL location = getClass().getResource(String.format("%sfxml%soptionPage.fxml", sepChar, sepChar));
+        FXMLLoader loader = new FXMLLoader(location);
 
         try {
             loader.load();

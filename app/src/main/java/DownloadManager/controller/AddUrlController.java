@@ -42,6 +42,8 @@ public class AddUrlController implements Initializable {
 
     @FXML private AnchorPane root;
 
+    private String sepChar = File.separator;
+
     private double xOffset =0;
     private double yOffset =0;
 
@@ -104,15 +106,8 @@ public class AddUrlController implements Initializable {
 
 
     private void showConfirmDownloadPage(){
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/view"+ File.separator+
-                "ConfirmDownload.fxml"));
 
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("ConfirmDownload");
 
         Stage stage = new Stage();
         stage.setScene(new Scene(loader.getRoot()));

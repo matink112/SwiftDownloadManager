@@ -4,6 +4,7 @@ import DownloadManager.App;
 import DownloadManager.controller.ConfirmDownloadController;
 import DownloadManager.controller.DownloadListItemController;
 import DownloadManager.controller.StaticData;
+import DownloadManager.controller.Utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -56,13 +57,7 @@ public class FileModel {
 
     private void createDownloadList(){
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+ File.separator + "DownloadListItem.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("DownloadListItem");
 
         setController(loader.getController());
 

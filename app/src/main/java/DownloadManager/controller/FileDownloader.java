@@ -123,22 +123,16 @@ public class FileDownloader extends Thread{
 
     private void showCompeleteDownloadPage(){
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+ File.separator+"DownloadCompletePage.fxml"));
+        FXMLLoader loader = Utils.loadFXMLPage("DownloadCompletePage");
 
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        DownloadCompleteController completeControllet = loader.getController();
+        DownloadCompleteController completeController = loader.getController();
 
         Platform.runLater(()-> {
             Stage stage = new Stage();
 
             stage.setScene(new Scene(loader.getRoot()));
 
-            completeControllet.initPage(name, folderPath, stage);
+            completeController.initPage(name, folderPath, stage);
 
             stage.initStyle(StageStyle.UNDECORATED);
 
