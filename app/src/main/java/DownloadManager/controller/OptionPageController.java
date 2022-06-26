@@ -1,8 +1,7 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Config;
 import com.jfoenix.controls.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.paint.Color;
@@ -13,7 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class OptionPageController implements Initializable {
@@ -111,9 +112,14 @@ public class OptionPageController implements Initializable {
 
     private Stage primaryStage;
 
+    private Config config;
+    private Properties settings;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        config = Config.getInstance();
+        settings = config.properties();
 
         initCheckBoxes();
 
@@ -128,25 +134,27 @@ public class OptionPageController implements Initializable {
 
     private void initDefaultFolderPath(){
 
-        if(!Files.exists(Paths.get(StaticData.getDownloadFolderPath()))) {
+        Path downloadPath = Paths.get(settings.getProperty("downloadDir"));
+        if(!Files.exists(downloadPath)) {
             try {
-                Files.createDirectories(Paths.get(StaticData.getDownloadFolderPath()));
+                Files.createDirectories(downloadPath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if(!Files.exists(Paths.get(StaticData.getDownloadTemporaryFolderPath()))) {
+        Path tempPath = Paths.get(settings.getProperty("tempDir"));
+        if(!Files.exists(tempPath)) {
             try {
-                Files.createDirectories(Paths.get(StaticData.getDownloadTemporaryFolderPath()));
+                Files.createDirectories(tempPath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        defaultDownloadPathField.setText(StaticData.getDownloadFolderPath());
+        defaultDownloadPathField.setText(settings.getProperty("downloadDir"));
 
-        temoraryPathField.setText(StaticData.getDownloadTemporaryFolderPath());
+        temoraryPathField.setText(settings.getProperty("tempDir"));
 
         defaultDownloadFolderChangebtn.setOnAction( e -> changeDownloadFolder());
 
@@ -158,60 +166,61 @@ public class OptionPageController implements Initializable {
 
     private void initFields(){
 
-        proxyField.setText(StaticData.getProxyHost());
+        proxyField.setText(settings.getProperty("proxyAddress"));
 
-        socksField.setText(StaticData.getSocksHost());
+        socksField.setText(settings.getProperty("socksAddress"));
 
-        proxyUserField.setText(StaticData.getProxyUserName());
+        proxyUserField.setText(settings.getProperty("proxyUsername"));
 
-        proxyPasswordField.setText(StaticData.getProxyPass());
+        proxyPasswordField.setText(settings.getProperty("proxyPassword"));
+
+        startQueueTimePicker.setText(settings.getProperty("schedulerStartAtTime"));
+
+        stopQueueTimePicker.setText(settings.getProperty("schedulerStopAtTime"));
 
         proxyField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (StaticData.isUseProxyServer())
                 if(newValue.matches(".+:[\\d]+")){
-                    StaticData.setProxyHost(newValue);
+                    config.setAndSaveProperty("proxyAddress", newValue);
                     proxyField.setFocusColor(Color.web("#4059a9"));
 
                 }else {
                     proxyField.setFocusColor(Color.web("#ef153e"));
-                    StaticData.setProxyHost(null);
+                    config.setAndSaveProperty("proxyAddress", "");
                 }
 
         });
 
         socksField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (StaticData.isUseSocksServer())
                 if(newValue.matches(".+:[\\d]+")){
-                    StaticData.setSocksHost(newValue);
+                    config.setAndSaveProperty("socksAddress", newValue);
                     socksField.setFocusColor(Color.web("#4059a9"));
 
                 }else {
                     socksField.setFocusColor(Color.web("#ef153e"));
-                    StaticData.setSocksHost(null);
+                    config.setAndSaveProperty("socksAddress", "");
                 }
 
         });
 
-        socksField.setOnAction( e -> StaticData.setSocksHost(socksField.getText()));
-
-        proxyUserField.setOnAction( e -> StaticData.setProxyUserName(proxyUserField.getText()));
-
-        proxyPasswordField.setOnAction( e -> StaticData.setProxyPass(proxyPasswordField.getText()));
-
-
         startQueueTimePicker.setOnAction(event -> {
             if(!startQueueTimePicker.getText().matches("^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")) {
-                startQueueTimePicker.setText("00:00");
+                startQueueTimePicker.setText(settings.getProperty("schedulerStartAtTime"));
+            } else {
+                config.setAndSaveProperty("schedulerStartAtTime", startQueueTimePicker.getText());
             }
         });
 
 
         stopQueueTimePicker.setOnAction(event -> {
             if(!stopQueueTimePicker.getText().matches("^(2[0-3]|[01]?[0-9]):([0-5]?[0-9])$")) {
-                stopQueueTimePicker.setText("00:00");
+                stopQueueTimePicker.setText(settings.getProperty("schedulerStopAtTime"));
+            } else {
+                config.setAndSaveProperty("schedulerStopAtTime", stopQueueTimePicker.getText());
             }
         });
 
+        proxyUserField.setOnAction(e -> config.setAndSaveProperty("proxyUsername", proxyUserField.getText()));
+        proxyPasswordField.setOnAction(e -> config.setAndSaveProperty("proxyPassword", proxyPasswordField.getText()));
 
 
     }
@@ -219,11 +228,11 @@ public class OptionPageController implements Initializable {
 
     private void initSegmentSlider(){
 
-        segmentPerDownloadSlider.setValue(StaticData.getSegmentPartDownload());
+        segmentPerDownloadSlider.setValue(Double.parseDouble(settings.getProperty("segmentPerDownload")));
 
 
         segmentPerDownloadSlider.valueProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setSegmentPartDownload((Double) newValue));
+                -> config.setAndSaveProperty("segmentPerDownload", newValue.toString()));
 
     }
 
@@ -233,7 +242,7 @@ public class OptionPageController implements Initializable {
 
         chooser.setTitle("Default Download Folder");
 
-        chooser.setInitialDirectory(new File(StaticData.getDownloadFolderPath()));
+        chooser.setInitialDirectory(new File(settings.getProperty("downloadDir")));
 
 
         File file = null;
@@ -243,9 +252,8 @@ public class OptionPageController implements Initializable {
         }catch (Exception ignored){}
 
         if(file != null) {
-            StaticData.setDownloadFolderPath(file.getPath());
-
-            defaultDownloadPathField.setText(StaticData.getDownloadFolderPath());
+            config.setAndSaveProperty("downloadDir", file.getPath());
+            defaultDownloadPathField.setText(file.getPath());
         }
     }
 
@@ -255,7 +263,7 @@ public class OptionPageController implements Initializable {
 
         chooser.setTitle("Default Temp Folder");
 
-        chooser.setInitialDirectory(new File(StaticData.getDownloadTemporaryFolderPath()));
+        chooser.setInitialDirectory(new File(settings.getProperty("tempDir")));
 
         File file = null;
 
@@ -264,50 +272,61 @@ public class OptionPageController implements Initializable {
         }catch (Exception ignored){}
 
         if(file != null) {
-            StaticData.setDownloadTemporaryFolderPath(file.getPath());
-
-            temoraryPathField.setText(StaticData.getDownloadTemporaryFolderPath());
+            config.setAndSaveProperty("tempDir", file.getPath());
+            temoraryPathField.setText(file.getPath());
         }
     }
 
 
     private void initCheckBoxes(){
 
+        showDownloadWindowcheck.setSelected(Boolean.parseBoolean(settings.getProperty("showDownloadProgressWindow")));
         showDownloadWindowcheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setShowDownloadWindowPermission(newValue));
+                -> config.setAndSaveProperty("showDownloadProgressWindow", newValue.toString()));
 
+        showDownloadCompleteWindowcheck.setSelected(Boolean.parseBoolean(settings.getProperty("showDownloadCompleteWindow")));
         showDownloadCompleteWindowcheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setShowDownloadCompeletePermission(newValue));
+                -> config.setAndSaveProperty("showDownloadCompleteWindow", newValue.toString()));
 
+        overwriteExistingFileCheck.setSelected(Boolean.parseBoolean(settings.getProperty("overwriteExistingFile")));
         overwriteExistingFileCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setOverwiteExistFile(newValue));
+                -> config.setAndSaveProperty("overwriteExistingFile", newValue.toString()));
 
+        DownloadAllToSingleCheck.setSelected(Boolean.parseBoolean(settings.getProperty("downloadAllFileToSingleDir")));
         DownloadAllToSingleCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setDownloadToSingleFolder(newValue));
+                -> config.setAndSaveProperty("downloadAllFileToSingleDir", newValue.toString()));
 
+        useProxyCheck.setSelected(Boolean.parseBoolean(settings.getProperty("useProxy")));
         useProxyCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setUseProxyServer(newValue));
+                -> config.setAndSaveProperty("useProxy", newValue.toString()));
 
+        useSocksCheck.setSelected(Boolean.parseBoolean(settings.getProperty("useSocks")));
         useSocksCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setUseSocksServer(newValue));
+                -> config.setAndSaveProperty("useSocks", newValue.toString()));
 
+        startQueueAtCheck.setSelected(Boolean.parseBoolean(settings.getProperty("startQueueAt")));
         startQueueAtCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setStartQueueCheck(newValue));
+                -> config.setAndSaveProperty("startQueueAt", newValue.toString()));
 
+        StopQueueAtCheck.setSelected(Boolean.parseBoolean(settings.getProperty("stopQueueAt")));
         StopQueueAtCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setStopQueueCheck(newValue));
+                -> config.setAndSaveProperty("stopQueueAt", newValue.toString()));
 
+        shutDownSystemCheck.setSelected(Boolean.parseBoolean(settings.getProperty("shutdownAfterDownload")));
         shutDownSystemCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setShutDownSystem(newValue));
+                -> config.setAndSaveProperty("shutdownAfterDownload", newValue.toString()));
 
+        priventHibernatSleepCheck.setSelected(Boolean.parseBoolean(settings.getProperty("preventSleep")));
         priventHibernatSleepCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setPriventSleepHibernate(newValue));
+                -> config.setAndSaveProperty("preventSleep", newValue.toString()));
 
+        launchStartUpCheck.setSelected(Boolean.parseBoolean(settings.getProperty("launchAtStartup")));
         launchStartUpCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setLaunchStartUp(newValue));
+                -> config.setAndSaveProperty("launchAtStartup", newValue.toString()));
 
+        showTryIconCheck.setSelected(Boolean.parseBoolean(settings.getProperty("showTrayIcon")));
         showTryIconCheck.selectedProperty().addListener((observable, oldValue, newValue)
-                -> StaticData.setShowTryIcon(newValue));
+                -> config.setAndSaveProperty("showTrayIcon", newValue.toString()));
 
 
     }
