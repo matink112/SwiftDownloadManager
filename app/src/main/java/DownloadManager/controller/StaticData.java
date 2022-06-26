@@ -19,6 +19,8 @@ public class StaticData {
 
     private static TrayIcon trayIcon=null;
 
+    public static String configDir;
+
     private static boolean showDownloadWindowPermission = true;
 
     private static boolean showDownloadCompeletePermission = true;
