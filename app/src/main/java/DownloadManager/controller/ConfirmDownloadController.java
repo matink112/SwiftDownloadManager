@@ -1,7 +1,5 @@
 package DownloadManager.controller;
 
-import DownloadManager.App;
-import DownloadManager.model.Category;
 import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
@@ -45,7 +43,7 @@ public class ConfirmDownloadController{
     private SVGPath minimizebtn;
 
     @FXML
-    private JFXComboBox<Category> categoryCombo;
+    private JFXComboBox<String> categoryCombo;
 
     @FXML
     private Label sizelbl;
@@ -86,11 +84,13 @@ public class ConfirmDownloadController{
     private long sizeFile=-1;
 
     private Config config;
+    private Category catInstance;
 
 
     public void initPage(String url , Stage confirmStage){
 
         config = Config.getInstance();
+        catInstance = Category.getInstance();
 
         progressbar.setProgress(JFXProgressBar.INDETERMINATE_PROGRESS);
 
@@ -246,12 +246,12 @@ public class ConfirmDownloadController{
 
 
     private void initComboBox(){
-        for (Category a : StaticData.getCategories())
-            categoryCombo.getItems().add(a);
+        for (String c : catInstance.getCategories())
+            categoryCombo.getItems().add(c);
 
 
         categoryCombo.valueProperty().addListener((observable, oldValue, newValue) -> {
-            changeFolderPath(StaticData.getDownloadFolderPath()+File.separator+newValue.getName());
+            changeFolderPath(StaticData.getDownloadFolderPath()+File.separator+newValue);
         });
     }
 
@@ -347,14 +347,7 @@ public class ConfirmDownloadController{
 
     private void addCategoryHandler(){
 
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("view"+File.separator
-                +"AddCategory.fxml"));
-
-        try {
-            loader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FXMLLoader loader = Utils.loadFXMLPage("AddCategory");
 
         AddCategoryController controller = loader.getController();
 
@@ -363,7 +356,6 @@ public class ConfirmDownloadController{
         controller.init(categoryCombo , popup);
 
         popup.show(addCatbtn);
-
 
     }
 
@@ -394,7 +386,7 @@ public class ConfirmDownloadController{
         if(categoryCombo.getSelectionModel().getSelectedItem() == null)
             return categoryCombo.getPromptText();
         else
-            return categoryCombo.getSelectionModel().getSelectedItem().getName();
+            return categoryCombo.getSelectionModel().getSelectedItem();
     }
 
 

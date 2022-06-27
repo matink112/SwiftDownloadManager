@@ -1,12 +1,12 @@
 package DownloadManager.controller;
 
-import DownloadManager.model.Category;
+import DownloadManager.controller.Category;
+import DownloadManager.controller.StaticData;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
 
 public class AddCategoryController {
 
@@ -17,10 +17,9 @@ public class AddCategoryController {
     private JFXButton addbtn;
 
     private JFXPopup popup;
-    private JFXComboBox<Category> comboBox;
+    private JFXComboBox<String> comboBox;
 
-    public void init(JFXComboBox<Category> confirmCombo , JFXPopup popup){
-
+    public void init(JFXComboBox<String> confirmCombo , JFXPopup popup){
         comboBox = confirmCombo;
 
         this.popup = popup;
@@ -29,17 +28,18 @@ public class AddCategoryController {
     }
 
     private void addCategory(){
-        String cat = catField.getText();
+        Category categoryInstance = Category.getInstance();
+        String newCategoryName = catField.getText();
 
-        if (cat.length()>0){
-            for (Category a : StaticData.getCategories()) {
-                if (a.getName().equals(cat)) {
+        if (newCategoryName.length()>0){
+            for (String a : categoryInstance.getCategories()) {
+                if (a.equals(newCategoryName)) {
                     popup.hide();
                     return;
                 }
             }
 
-            updateCategories(cat);
+            updateCategories(newCategoryName, categoryInstance);
 
             popup.hide();
 
@@ -49,17 +49,15 @@ public class AddCategoryController {
         popup.hide();
     }
 
-    private void updateCategories(String name){
+    private void updateCategories(String name, Category category){
 
-        Category newCat = new Category(name);
+        category.addCategory(name);
 
-        StaticData.getCategories().add(newCat);
+        comboBox.setValue(name);
 
-        comboBox.setValue(newCat);
+        comboBox.getItems().add(name);
 
-        comboBox.getItems().add(newCat);
-
-        StaticData.getMainController().addNewCategory(newCat);
+        StaticData.getMainController().addNewCategory(name);
     }
 
 

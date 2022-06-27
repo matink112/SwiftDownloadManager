@@ -408,8 +408,8 @@ public class MainViewController implements Initializable {
         settingLayout.setContent(loader.getRoot());
     }
 
-    public void addNewCategory(Category cat){
-        categoryListView.getItems().add(cat.getName());
+    public void addNewCategory(String categoryName){
+        categoryListView.getItems().add(categoryName);
     }
 
 
