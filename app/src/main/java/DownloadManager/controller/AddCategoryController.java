@@ -34,6 +34,7 @@ public class AddCategoryController {
         if (newCategoryName.length()>0){
             for (String a : categoryInstance.getCategories()) {
                 if (a.equals(newCategoryName)) {
+                    comboBox.setValue(a);
                     popup.hide();
                     return;
                 }

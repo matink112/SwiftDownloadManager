@@ -1,7 +1,6 @@
 package DownloadManager.controller;
 
 import DownloadManager.App;
-import DownloadManager.model.Category;
 import com.jfoenix.controls.*;
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -329,7 +328,10 @@ public class MainViewController implements Initializable {
 
 
     private void initListView(){
-        categoryListView.getItems().addAll("All Categories" ,"Documents","Music","Program","Movies");
+        Category catInstance = Category.getInstance();
+        categoryListView.getItems().add("All Categories");
+        categoryListView.getItems().addAll(catInstance.getCategories());
+        categoryListView.getSelectionModel().select(0);
     }
 
 
