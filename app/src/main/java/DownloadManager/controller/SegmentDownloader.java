@@ -1,5 +1,6 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Config;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
 
@@ -35,8 +36,8 @@ public class SegmentDownloader extends Thread {
     private int tryCunt;
 
     public SegmentDownloader(FileDownloader fileDownloader, String name, long segmentSize, long startByte
-            , int segmentNumber, String url, JFXProgressBar progressBar) {
-        segmentPath = StaticData.getDownloadTemporaryFolderPath();
+            , int segmentNumber, String url, JFXProgressBar progressBar, String tempPath) {
+        segmentPath = tempPath;
         this.fileDownloader = fileDownloader;
         this.segmentSize = segmentSize;
         this.startByte = startByte;

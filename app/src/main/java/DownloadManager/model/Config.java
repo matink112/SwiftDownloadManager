@@ -38,10 +38,15 @@ public class Config {
     public static Config getInstance() {
         if (instance == null)
             instance = new Config();
+        instance.loadData();
         return instance;
     }
 
     public Properties properties() {
+        return settingProperties;
+    }
+
+    private void loadData() {
         try {
             FileInputStream in = new FileInputStream(settingDir);
             settingProperties.load(in);
@@ -49,7 +54,6 @@ public class Config {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return settingProperties;
     }
 
     public void setAndSaveProperty(String key, String value) {
@@ -62,22 +66,6 @@ public class Config {
             e.printStackTrace();
         }
     }
-
-    public String[] getCategories() {
-        return properties().getProperty("categories").split(",");
-    }
-
-    public void addCategory(String name) {
-        String newCategories = String.format("%s,%s", properties().getProperty("categories"), name);
-        setAndSaveProperty("categories", newCategories);
-    }
-
-    public void removeCategory(String name) {
-        ArrayList<String> categories = new ArrayList<>(Arrays.asList(getCategories()));
-        categories.remove(name);
-        setAndSaveProperty("categories", String.join(",", categories));
-    }
-
 
     private void saveSettingFromResource(String path) {
         Properties setting = new Properties();

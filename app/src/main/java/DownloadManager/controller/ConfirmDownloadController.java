@@ -21,6 +21,7 @@ import java.net.Proxy.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Date;
+import java.util.Properties;
 
 public class ConfirmDownloadController{
 
@@ -83,13 +84,17 @@ public class ConfirmDownloadController{
 
     private long sizeFile=-1;
 
+    private String sepChar = File.separator;
+
     private Config config;
+    private Properties setting;
     private Category catInstance;
 
 
     public void initPage(String url , Stage confirmStage){
 
         config = Config.getInstance();
+        setting = config.properties();
         catInstance = Category.getInstance();
 
         progressbar.setProgress(JFXProgressBar.INDETERMINATE_PROGRESS);
@@ -148,32 +153,12 @@ public class ConfirmDownloadController{
 
 
     private void setFileIcon(String category){
-//        switch (category){
-//            case "Music":
-//                fileIcon.setContent(catInstance.getSvgIcon("Music"));
-//                return;
-//            case "Movie":
-//                fileIcon.setContent(catInstance.getSvgIcon("Movie"));
-//                return;
-//            case "Program":
-//                fileIcon.setContent(catInstance.getSvgIcon("Program"));
-//                return;
-//            case "Compress":
-//                fileIcon.setContent(catInstance.getSvgIcon("Compress"));
-//                return;
-//            case "Document":
-//                fileIcon.setContent(catInstance.getSvgIcon("Document"));
-//                return;
-//            default:fileIcon.setContent(catInstance.getSvgIcon("Other"));
-//
-//        }
         fileIcon.setContent(catInstance.getSvgIcon(category));
-
     }
 
 
     private String getSavePath(String category){
-        return StaticData.getDownloadFolderPath()+ File.separator + category;
+        return String.format("%s%s%s", setting.getProperty("downloadDir"), sepChar, category);
     }
 
 
@@ -252,7 +237,7 @@ public class ConfirmDownloadController{
 
 
         categoryCombo.valueProperty().addListener((observable, oldValue, newValue) -> {
-            changeFolderPath(StaticData.getDownloadFolderPath()+File.separator+newValue);
+            changeFolderPath(String.format("%s%s%s", setting.getProperty("DownloadDir"), sepChar, newValue));
         });
     }
 
@@ -300,9 +285,12 @@ public class ConfirmDownloadController{
 
     public static Proxy getProxy(){
         int port;
-        if(StaticData.isUseSocksServer() || StaticData.isUseProxyServer()){
-            if(StaticData.isUseProxyServer()) {
-                String[] hp = StaticData.getProxyHost().split(":");
+        Config config = Config.getInstance();
+        boolean proxyPerm = Boolean.parseBoolean(config.properties().getProperty("useSocks"));
+        boolean socksPerm = Boolean.parseBoolean(config.properties().getProperty("useProxy"));
+        if(proxyPerm || socksPerm){
+            if(proxyPerm) {
+                String[] hp = config.properties().getProperty("proxyAddress").split(":");
 
                 try {
                     port = Integer.parseInt(hp[1]);
@@ -312,7 +300,7 @@ public class ConfirmDownloadController{
 
                 return new Proxy(Type.HTTP, new InetSocketAddress(hp[0],port));
             }else {
-                String[] hp = StaticData.getSocksHost().split(":");
+                String[] hp = config.properties().getProperty("socksAddress").split(":");
 
                 try {
                     port = Integer.parseInt(hp[1]);

@@ -36,7 +36,7 @@ public class FileModel {
     public FileModel(String fileName, Date date, long size, String url, String category,
                      String filePath, long downloadedSize, Status status, String icon) {
 
-        segmentNum = StaticData.getSegmentPartDownload();
+        segmentNum = (int) Double.parseDouble(Config.getInstance().properties().getProperty("segmentPerDownload"));
 
         this.setFileName(fileName);
         this.setDate(date);

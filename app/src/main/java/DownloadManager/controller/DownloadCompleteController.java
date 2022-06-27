@@ -1,5 +1,6 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Config;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXTextField;
@@ -98,10 +99,7 @@ public class DownloadCompleteController implements Initializable {
         });
 
         completePagePermissionCheckBox.selectedProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue)
-                StaticData.setShowDownloadCompeletePermission(false);
-            else
-                StaticData.setShowDownloadCompeletePermission(true);
+            Config.getInstance().setAndSaveProperty("showDownloadCompleteWindow", Boolean.toString(!newValue));
         });
 
         moveStageHandler();

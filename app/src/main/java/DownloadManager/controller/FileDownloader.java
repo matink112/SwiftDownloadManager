@@ -2,6 +2,7 @@ package DownloadManager.controller;
 
 
 import DownloadManager.App;
+import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
 import com.jfoenix.controls.JFXProgressBar;
@@ -41,11 +42,14 @@ public class FileDownloader extends Thread{
 
     private FileModel fileModel;
 
+    private Config config;
+
     public FileDownloader(String name, String folderPath, String url,
                           String category, long size , Arc arcProgress , Label persentlbl,
                           Label speedlbl , Label downloadedlbl, DownloadingPageController controller,
                           FileModel fileModel) {
 
+        config = Config.getInstance();
         this.name = name;
         this.folderPath = folderPath;
         this.url = url;
@@ -63,10 +67,7 @@ public class FileDownloader extends Thread{
 
         downloaders = new ArrayList<>();
 
-        segMentNumber = StaticData.getSegmentPartDownload();
-
-
-
+        segMentNumber = (int) Double.parseDouble(config.properties().getProperty("segmentPerDownload"));
 
     }
 
@@ -110,7 +111,7 @@ public class FileDownloader extends Thread{
 
                 Platform.runLater(()-> controller.getStage().close());
 
-                if(StaticData.isShowDownloadCompeletePermission())
+                if(Boolean.parseBoolean(Config.getInstance().properties().getProperty("showDownloadCompleteWindow")))
                     showCompeleteDownloadPage();
 
                 break;
@@ -238,7 +239,7 @@ public class FileDownloader extends Thread{
             }
 
             SegmentDownloader segmentDownloader = new SegmentDownloader(this ,name , eachSegmentSize
-                    ,start ,i , url ,progressBar);
+                    ,start ,i , url ,progressBar, config.properties().getProperty("tempDir"));
 
             downloaders.add(segmentDownloader);
 
