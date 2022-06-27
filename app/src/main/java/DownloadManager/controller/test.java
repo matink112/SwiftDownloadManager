@@ -9,12 +9,9 @@ public class test {
 
     public static void main(String[] args) throws IOException {
 
-//    Desktop.getDesktop().open(new File("/home/matin",".bashrc"));
-
-//        Files.createFile();
-//        Files.createDirectories(Paths.get("~/.SDM/setting", "setting.txt"));
-//
-//        System.out.println(Utils.locations.get("setting"));
+        Category c = Category.getInstance();
+        for (String s: c.getCategories())
+            System.out.println(s);
 
     }
 }
