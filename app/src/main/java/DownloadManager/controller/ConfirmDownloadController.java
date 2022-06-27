@@ -2,6 +2,7 @@ package DownloadManager.controller;
 
 import DownloadManager.App;
 import DownloadManager.model.Category;
+import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
 import com.jfoenix.controls.*;
@@ -84,8 +85,12 @@ public class ConfirmDownloadController{
 
     private long sizeFile=-1;
 
+    private Config config;
+
 
     public void initPage(String url , Stage confirmStage){
+
+        config = Config.getInstance();
 
         progressbar.setProgress(JFXProgressBar.INDETERMINATE_PROGRESS);
 

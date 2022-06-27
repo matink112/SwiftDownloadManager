@@ -21,11 +21,11 @@ public class Config {
 
     private Config() {
         settingProperties = new Properties();
-        settingDir = Utils.getSettingLocation();
+        settingDir = Utils.getLocation("setting");
         try {
-            Files.createDirectories(Paths.get(Utils.getBaseDirectoryPath()));
+            Files.createDirectories(Paths.get(Utils.getLocation("base")));
 
-            if (!Files.exists(Paths.get(Utils.getBaseDirectoryPath(),"setting.properties"))) {
+            if (!Files.exists(Paths.get(Utils.getLocation("base"),"setting.properties"))) {
                 saveSettingFromResource(settingDir);
                 System.out.println("save setting from resource");
             }
@@ -89,8 +89,8 @@ public class Config {
 
             setting.load(in);
 
-            setting.setProperty("downloadDir", Utils.getDefaultDownloadDir());
-            setting.setProperty("tempDir", Utils.getDefaultTempDir());
+            setting.setProperty("downloadDir", Utils.getLocation("defaultDownload"));
+            setting.setProperty("tempDir", Utils.getLocation("defaultTemp"));
 
             setting.store(out, "default Settings");
 

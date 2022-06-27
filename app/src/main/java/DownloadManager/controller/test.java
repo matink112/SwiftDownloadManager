@@ -13,11 +13,8 @@ public class test {
 
 //        Files.createFile();
 //        Files.createDirectories(Paths.get("~/.SDM/setting", "setting.txt"));
-        Config c = Config.getInstance();
-        System.out.println(c.getCategories()[0]);
-//        c.removeCategory("Music");
-        c.addCategory("Music");
-        System.out.println(c.getCategories()[0]);
+//
+//        System.out.println(Utils.locations.get("setting"));
 
     }
 }
