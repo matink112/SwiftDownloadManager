@@ -148,25 +148,26 @@ public class ConfirmDownloadController{
 
 
     private void setFileIcon(String category){
-        switch (category){
-            case "Music":
-                fileIcon.setContent(StaticData.getMusicIcon());
-                return;
-            case "Movie":
-                fileIcon.setContent(StaticData.getMovieIcon());
-                return;
-            case "Program":
-                fileIcon.setContent(StaticData.getProgramIcon());
-                return;
-            case "Compress":
-                fileIcon.setContent(StaticData.getCompressIcon());
-                return;
-            case "Document":
-                fileIcon.setContent(StaticData.getDocumentIcon());
-                return;
-            default:fileIcon.setContent(StaticData.getOtherIcon());
-
-        }
+//        switch (category){
+//            case "Music":
+//                fileIcon.setContent(catInstance.getSvgIcon("Music"));
+//                return;
+//            case "Movie":
+//                fileIcon.setContent(catInstance.getSvgIcon("Movie"));
+//                return;
+//            case "Program":
+//                fileIcon.setContent(catInstance.getSvgIcon("Program"));
+//                return;
+//            case "Compress":
+//                fileIcon.setContent(catInstance.getSvgIcon("Compress"));
+//                return;
+//            case "Document":
+//                fileIcon.setContent(catInstance.getSvgIcon("Document"));
+//                return;
+//            default:fileIcon.setContent(catInstance.getSvgIcon("Other"));
+//
+//        }
+        fileIcon.setContent(catInstance.getSvgIcon(category));
 
     }
 
@@ -181,24 +182,24 @@ public class ConfirmDownloadController{
         String[] splitUrl = url.split("[.]");
         String format = splitUrl[splitUrl.length - 1];
 
-        for (String a : StaticData.getMusicFormates())
+        for (String a : catInstance.getSupportedFormat("Music"))
             if (format.equals(a))
                 return "Music";
 
 
-        for (String a : StaticData.getMovieFormates())
+        for (String a : catInstance.getSupportedFormat("Movie"))
             if (a.equals(format))
                 return "Movie";
 
-        for (String a : StaticData.getApplicationFormates())
+        for (String a : catInstance.getSupportedFormat("Program"))
             if (a.equals(format))
                 return "Program";
 
-        for (String a : StaticData.getDocumentFormates())
+        for (String a : catInstance.getSupportedFormat("Document"))
             if (a.equals(format))
                 return "Document";
 
-        for(String a : StaticData.getCompressFormates())
+        for(String a : catInstance.getSupportedFormat("Compress"))
             if (a.equals(format))
                 return "Compress";
 

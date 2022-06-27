@@ -59,65 +59,9 @@ public class StaticData {
 
     private static String proxyPass;
 
-    private static ArrayList<Category> categories;
-
     private static MainViewController mainController;
 
     private static ArrayList<FileModel> fileModels;
-
-
-
-    private static String musicIcon="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M13,13H11V18A2,2" +
-            " 0 0,1 9,20A2,2 0 0,1 7,18A2,2 0 0,1 9,16C9.4,16 9.7,16.1 10,16.3V11H13V13M13,9V3.5L18.5,9H13Z";
-
-
-    private static String movieIcon = "M18,9H16V7H18M18,13H16V11H18M18,17H16V15H18M8,9H6V7H8M8,13H6V11H8M8," +
-            "17H6V15H8M18,3V5H16V3H8V5H6V3H4V21H6V19H8V21H16V19H18V21H20V3H18Z";
-
-
-    private static String compressIcon = "M3,3H21V7H3V3M4,8H20V21H4V8M9.5,11A0.5,0.5 0 0,0 9,11.5" +
-            "V13H15V11.5A0.5,0.5 0 0,0 14.5,11H9.5Z";
-
-
-    private static String programIcon = "M2,10.96C1.5,10.68 1.35,10.07 1.63,9.59L3.13,7C3.24,6.8 3.41,6.66" +
-            " 3.6,6.58L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C2" +
-            "0.66,6.72 20.82,6.88 20.91,7.08L22.36,9.6C22.64,10.08 22.47,10.69 22,10.96L21,11.54V16.5C2" +
-            "1,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21" +
-            ".94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V10.96C2.7,11.13 2.32,11.14 2,10.96M" +
-            "12,4.15V4.15L12,10.85V10.85L17.96,7.5L12,4.15M5,15.91L11,19.29V12.58L5,9.21V15.91M19,15." +
-            "91V12.69L14,15.59C13.67,15.77 13.3,15.76 13,15.6V19.29L19,15.91M13.85,13.36L20.13,9.73L19." +
-            "55,8.72L13.27,12.35L13.85,13.36Z";
-
-
-    private static String documentIcon ="M6,2A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14," +
-            "2H6M6,4H13V9H18V20H6V4M8,12V14H16V12H8M8,16V18H13V16H8Z";
-
-
-    private static String otherIcon = "M10,18H8V16H10V18M10,14H8V9H10V14M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0," +
-            "0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z";
-
-
-    private static String[] compressFormates = {"zip","7z","ace","s7z","afa"
-            ,"alz", "arc","ark","b6z","car","cfs","dd","dgc","pit","rar"
-            ,"rk","tar","gz","Z","bz2","lzma","txz","xz"};
-
-
-    private static String[] musicFormates= { "3gp","aa","aac","m4a","m4b","m4p","mp3","mpc","ogg",
-            "oga","wav","wma","wv"};
-
-    private static String[] movieFormates ={"mkv","flv","vob","ogv","ogg","gif","gifv","mng","avi"
-            ,"wmv","rm","amv","mp4","mpg","m2v","m4v","3gp","flv","f4v","f4p","f4b"};
-
-    private static String[] applicationFormates = {"apk","appx","deb","ebuild","pisi","pkg","rpm","snap"};
-
-
-    private static String[] documentFormates = {"txt","doc","xml","html","htm","docx","odt","pdf"
-            ,"ps","svg","xls","xlsm","pptx","ppt","xps","potx","ppa","jpg","png","odp"};
-
-
-
-
-
 
 
     static {
@@ -125,14 +69,6 @@ public class StaticData {
 
         setDownloadTemporaryFolderPath(System.getProperty("user.home") + File.separator + "Downloads" +
                                         File.separator + ".temp");
-
-        categories = new ArrayList<>();
-
-        getCategories().add(new Category("Music"));
-        getCategories().add(new Category("Movie"));
-        getCategories().add(new Category("Document"));
-        getCategories().add(new Category("Program"));
-        getCategories().add(new Category("Other"));
 
 
         setFileModels(new ArrayList<>());
@@ -336,104 +272,6 @@ public class StaticData {
     public static void setAddUrlStage(Stage addUrlStage) {
         StaticData.addUrlStage = addUrlStage;
     }
-
-    public static String getMusicIcon() {
-        return musicIcon;
-    }
-
-    public static void setMusicIcon(String musicIcon) {
-        StaticData.musicIcon = musicIcon;
-    }
-
-    public static String getMovieIcon() {
-        return movieIcon;
-    }
-
-    public static void setMovieIcon(String movieIcon) {
-        StaticData.movieIcon = movieIcon;
-    }
-
-    public static String getCompressIcon() {
-        return compressIcon;
-    }
-
-    public static void setCompressIcon(String compressIcon) {
-        StaticData.compressIcon = compressIcon;
-    }
-
-    public static String getProgramIcon() {
-        return programIcon;
-    }
-
-    public static void setProgramIcon(String programIcon) {
-        StaticData.programIcon = programIcon;
-    }
-
-    public static String getDocumentIcon() {
-        return documentIcon;
-    }
-
-    public static void setDocumentIcon(String documentIcon) {
-        StaticData.documentIcon = documentIcon;
-    }
-
-    public static String getOtherIcon() {
-        return otherIcon;
-    }
-
-    public static void setOtherIcon(String otherIcon) {
-        StaticData.otherIcon = otherIcon;
-    }
-
-    public static String[] getCompressFormates() {
-        return compressFormates;
-    }
-
-    public static void setCompressFormates(String[] compressFormates) {
-        StaticData.compressFormates = compressFormates;
-    }
-
-    public static String[] getMusicFormates() {
-        return musicFormates;
-    }
-
-    public static void setMusicFormates(String[] musicFormates) {
-        StaticData.musicFormates = musicFormates;
-    }
-
-    public static String[] getMovieFormates() {
-        return movieFormates;
-    }
-
-    public static void setMovieFormates(String[] movieFormates) {
-        StaticData.movieFormates = movieFormates;
-    }
-
-    public static String[] getApplicationFormates() {
-        return applicationFormates;
-    }
-
-    public static void setApplicationFormates(String[] applicationFormates) {
-        StaticData.applicationFormates = applicationFormates;
-    }
-
-
-    public static String[] getDocumentFormates() {
-        return documentFormates;
-    }
-
-    public static void setDocumentFormates(String[] documentFormates) {
-        StaticData.documentFormates = documentFormates;
-    }
-
-    public static ArrayList<Category> getCategories() {
-        return categories;
-    }
-
-    public static void setCategories(ArrayList<Category> categories) {
-        StaticData.categories = categories;
-    }
-
 
     public static MainViewController getMainController() {
         return mainController;
