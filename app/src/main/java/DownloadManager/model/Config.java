@@ -6,6 +6,9 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 public class Config {
@@ -58,6 +61,21 @@ public class Config {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String[] getCategories() {
+        return properties().getProperty("categories").split(",");
+    }
+
+    public void addCategory(String name) {
+        String newCategories = String.format("%s,%s", properties().getProperty("categories"), name);
+        setAndSaveProperty("categories", newCategories);
+    }
+
+    public void removeCategory(String name) {
+        ArrayList<String> categories = new ArrayList<>(Arrays.asList(getCategories()));
+        categories.remove(name);
+        setAndSaveProperty("categories", String.join(",", categories));
     }
 
 

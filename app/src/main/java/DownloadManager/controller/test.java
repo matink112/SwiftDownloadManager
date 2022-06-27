@@ -14,12 +14,10 @@ public class test {
 //        Files.createFile();
 //        Files.createDirectories(Paths.get("~/.SDM/setting", "setting.txt"));
         Config c = Config.getInstance();
-        String s = c.properties().getProperty("downloadDir");
-        System.out.println(s);
-        c.setAndSaveProperty("useProxyServer", "true");
-        System.out.println(c.properties().getProperty("useProxyServer"));
-        c.setAndSaveProperty("segmentPerDownload", "7");
-        System.out.println(c.properties().getProperty("segmentPerDownload"));
+        System.out.println(c.getCategories()[0]);
+//        c.removeCategory("Music");
+        c.addCategory("Music");
+        System.out.println(c.getCategories()[0]);
 
     }
 }
