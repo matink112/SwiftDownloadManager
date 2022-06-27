@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +12,7 @@ public class Utils {
 
     private static String sepChar = File.separator;
 
-    public static Map<String, String> fileLocations = new HashMap<String, String>() {{
+    private static Map<String, String> fileLocations = new HashMap<String, String>() {{
         put("base", String.format("%s%s.sdm", System.getProperty("user.home"), sepChar));
         put("setting", String.format("%s%ssetting.properties", get("base"), sepChar));
         put("categories", String.format("%s%scategories.json", get("base"), sepChar));

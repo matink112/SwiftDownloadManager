@@ -7,7 +7,9 @@ public class Category {
     private String categoryDir;
 
     private Category() {
-//        categoryDir =
+        categoryDir = Utils.getLocation("categories");
+
+
     }
 
     public static Category getInstance() {
