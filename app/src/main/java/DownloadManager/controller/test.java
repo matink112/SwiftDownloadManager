@@ -1,8 +1,10 @@
 package DownloadManager.controller;
 
 import DownloadManager.model.Config;
+import org.json.simple.JSONArray;
 
 import java.io.IOException;
+import java.util.ListIterator;
 
 public class test {
 
@@ -12,6 +14,5 @@ public class test {
         Category c = Category.getInstance();
         for (String s: c.getCategories())
             System.out.println(s);
-
     }
 }
