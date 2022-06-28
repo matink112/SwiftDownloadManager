@@ -1,10 +1,8 @@
 package DownloadManager.controller;
 
-import DownloadManager.model.Config;
-import org.json.simple.JSONArray;
+import DownloadManager.model.Category;
 
 import java.io.IOException;
-import java.util.ListIterator;
 
 public class test {
 

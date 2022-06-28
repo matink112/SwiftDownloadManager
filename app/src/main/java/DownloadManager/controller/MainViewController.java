@@ -1,6 +1,6 @@
 package DownloadManager.controller;
 
-import DownloadManager.App;
+import DownloadManager.model.Category;
 import com.jfoenix.controls.*;
 import javafx.animation.*;
 import javafx.application.Platform;

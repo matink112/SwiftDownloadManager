@@ -1,7 +1,6 @@
 package DownloadManager.controller;
 
-import DownloadManager.controller.Category;
-import DownloadManager.controller.StaticData;
+import DownloadManager.model.Category;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPopup;

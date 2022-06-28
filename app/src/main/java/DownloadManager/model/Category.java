@@ -1,5 +1,6 @@
-package DownloadManager.controller;
+package DownloadManager.model;
 
+import DownloadManager.controller.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

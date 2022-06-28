@@ -1,5 +1,6 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Category;
 import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
