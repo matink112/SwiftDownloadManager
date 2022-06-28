@@ -400,8 +400,9 @@ public class ConfirmDownloadController{
 
     // TODO: create file model may have bug
     private FileModel getFileModel(){
+        String filePath = String.format("%s%s%s", pathField.getText(), FileManager.sepChar, fileNameField.getText());
         return new FileModel(fileNameField.getText() , new Date() ,sizeFile , urlField.getText(),getselectedCategory()
-                ,pathField.getText()+File.separator+fileNameField.getText() ,0,
+                ,filePath, setting.getProperty("tempDir") ,0,
                 Status.Downloading, null);
     }
 

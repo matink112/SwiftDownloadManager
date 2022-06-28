@@ -105,11 +105,19 @@ public class FileManager {
             put("url", fileModel.getUrl());
             put("category", fileModel.getCategory());
             put("filePath", fileModel.getFilePath());
+            put("tempDir", fileModel.getTempDir());
             put("status", fileModel.getStatus().toString());
             put("segments", Integer.toString(fileModel.getSegmentNum()));
         }};
         files.add(file);
         saveJson();
+    }
+
+    public String[] getSegmentPaths(String fileName, String tempDir, int segmentNumber) {
+        String[] temps = new String[segmentNumber];
+        for (int i=0; i < segmentNumber; i++)
+            temps[i] = String.format("%s%s%s(%d).cache", tempDir, sepChar, fileName, i);
+        return temps;
     }
 
 }

@@ -25,6 +25,8 @@ public class FileModel {
     private String url;
     private String Category;
     private String filePath;
+
+    private String tempDir;
     private Long downloadedSize;
     private Status status;
     private String icon;
@@ -39,7 +41,7 @@ public class FileModel {
 
 
     public FileModel(String fileName, Date date, long size, String url, String category,
-                     String filePath, long downloadedSize, Status status, String id) {
+                     String filePath, String tempDir, long downloadedSize, Status status, String id) {
 
         segmentNum = (int) Double.parseDouble(Config.getInstance().properties().getProperty("segmentPerDownload"));
 
@@ -48,6 +50,7 @@ public class FileModel {
         else
             this.id = id;
 
+        this.tempDir = tempDir;
         this.setFileName(fileName);
         this.setDate(date);
         this.setSize(size);
@@ -191,5 +194,9 @@ public class FileModel {
 
     public String getId() {
         return id;
+    }
+
+    public String getTempDir() {
+        return tempDir;
     }
 }

@@ -78,7 +78,6 @@ public class FileDownloader extends Thread{
     public void stopDownload(){
         for (SegmentDownloader a : downloaders)
             a.stop();
-
         stop();
     }
 
