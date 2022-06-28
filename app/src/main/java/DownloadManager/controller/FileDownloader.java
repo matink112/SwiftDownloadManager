@@ -108,6 +108,8 @@ public class FileDownloader extends Thread{
                 System.out.println(downloadedSize);
                 mergeFiles();
 
+                FileManager.getInstance().updateFileStatus(fileModel.getId(), Status.Finished);
+
                 Platform.runLater(()-> controller.getStage().close());
 
                 if(Boolean.parseBoolean(Config.getInstance().properties().getProperty("showDownloadCompleteWindow")))

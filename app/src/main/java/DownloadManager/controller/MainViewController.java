@@ -115,9 +115,6 @@ public class MainViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-
-
         initSearchField();
 
         initListView();
@@ -126,9 +123,9 @@ public class MainViewController implements Initializable {
 
         initBtns();
 
-
-
         initSettingDrawer();
+
+        StaticData.setFileModels(FileManager.getInstance().getFilesModel());
 
         createSystemTray();
 

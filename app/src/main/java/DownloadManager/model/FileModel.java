@@ -1,16 +1,17 @@
 package DownloadManager.model;
 
 import DownloadManager.App;
-import DownloadManager.controller.ConfirmDownloadController;
-import DownloadManager.controller.DownloadListItemController;
-import DownloadManager.controller.StaticData;
-import DownloadManager.controller.Utils;
+import DownloadManager.controller.*;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import org.json.simple.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -65,7 +66,33 @@ public class FileModel {
         createDownloadList();
     }
 
+    public static FileModel parseJson(JSONObject obj, FileManager fm) throws IOException, ParseException {
+//        SimpleDateFormat formatter = new SimpleDateFormat("dow mon dd hh:mm:ss zzz yyyy");
+        String fileName = (String) obj.get("name");
+        Date date = new Date();
+        long size = Long.parseLong((String) obj.get("size"));
+        String url = (String) obj.get("url");
+        String category = (String) obj.get("category");
+        String filePath = (String) obj.get("filePath");
+        String tempDir = (String) obj.get("tempDir");
+        Status status = Status.valueOf((String) obj.get("status"));
+        String id = (String) obj.get("tempDir");
+        int segments = Integer.parseInt((String) obj.get("segments"));
+        long downloadSize = (status == Status.Finished) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
 
+        return new FileModel(
+                fileName,
+                date,
+                size,
+                url,
+                category,
+                filePath,
+                tempDir,
+                downloadSize,
+                status,
+                id
+        );
+    }
 
 
     private void createDownloadList(){
@@ -82,7 +109,10 @@ public class FileModel {
 
         anchorPane.prefWidthProperty().bind(vBox.widthProperty());
 
-        StaticData.getMainController().getAllDownloadList().getItems().add(vBox);
+        Platform.runLater(() -> {
+            StaticData.getMainController().getAllDownloadList().getItems().add(vBox);
+        });
+
 
     }
 

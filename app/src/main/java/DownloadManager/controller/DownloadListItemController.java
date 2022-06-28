@@ -1,5 +1,7 @@
 package DownloadManager.controller;
 
+import DownloadManager.model.Category;
+import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
 import javafx.application.Platform;
@@ -43,7 +45,7 @@ public class DownloadListItemController implements Initializable{
 
         updateStatusLable(Status , this.downloadedSize);
 
-        icon.setContent(fileModel.getIcon());
+        this.icon.setContent(Category.getInstance().getSvgIcon(fileModel.getCategory()));
     }
 
     public void updateStatusLable(String status , String downloadedSize ){

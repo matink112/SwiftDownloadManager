@@ -10,8 +10,12 @@ import org.json.simple.parser.JSONParser;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 import java.util.UUID;
 
@@ -113,10 +117,40 @@ public class FileManager {
         saveJson();
     }
 
-    public String[] getSegmentPaths(String fileName, String tempDir, int segmentNumber) {
+    public ArrayList<FileModel> getFilesModel() {
+        ArrayList<FileModel> fileModels = new ArrayList<>();
+        for (Object o: files.toArray()){
+            try {
+                fileModels.add(FileModel.parseJson((JSONObject) o, this));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return fileModels;
+    }
+
+    public void updateFileStatus(String id, Status status) {
+        for (Object o : files.toArray()){
+            JSONObject obj = (JSONObject) o;
+            if (((String) obj.get("id")).equals(id)){
+                obj.put("status", status.toString());
+            }
+            saveJson();
+            break;
+        }
+    }
+
+    public long incompleteDownloadedSize(String fileName, String tempDir, int segmentNumber) throws IOException {
+        long total = 0;
+        for (String name: getSegmentNames(fileName, segmentNumber))
+            total += Files.size(Paths.get(tempDir, name));
+        return total;
+    }
+
+    public String[] getSegmentNames(String fileName, int segmentNumber) {
         String[] temps = new String[segmentNumber];
         for (int i=0; i < segmentNumber; i++)
-            temps[i] = String.format("%s%s%s(%d).cache", tempDir, sepChar, fileName, i);
+            temps[i] = String.format("%s(%d).cache", fileName, i);
         return temps;
     }
 
