@@ -1,14 +1,9 @@
 package DownloadManager.controller;
 
-import DownloadManager.model.Category;
 import DownloadManager.model.FileModel;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class StaticData {
@@ -19,45 +14,7 @@ public class StaticData {
 
     private static TrayIcon trayIcon=null;
 
-    public static String configDir;
-
-    private static boolean showDownloadWindowPermission = true;
-
-    private static boolean showDownloadCompeletePermission = true;
-
-    private static boolean overwiteExistFile = false;
-
-    private static boolean downloadToSingleFolder = false;
-
-    private static boolean useProxyServer = false;
-
-    private static boolean useSocksServer = false;
-
-    private static boolean startQueueCheck = false;
-
-    private static boolean stopQueueCheck = false;
-
-    private static boolean shutDownSystem = false;
-
-    private static boolean priventSleepHibernate = false;
-
-    private static boolean launchStartUp = true;
-
     private static boolean showTryIcon = true;
-
-    private static String downloadFolderPath;
-
-    private static String downloadTemporaryFolderPath;
-
-    private static int segmentPartDownload = 4;
-
-    private static String proxyHost;
-
-    private static String socksHost;
-
-    private static String proxyUserName;
-
-    private static String proxyPass;
 
     private static MainViewController mainController;
 
