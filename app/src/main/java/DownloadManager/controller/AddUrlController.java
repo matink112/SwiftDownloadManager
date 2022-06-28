@@ -110,13 +110,13 @@ public class AddUrlController implements Initializable {
         FXMLLoader loader = Utils.loadFXMLPage("ConfirmDownload");
 
         Stage stage = new Stage();
-        stage.setScene(new Scene(loader.getRoot()));
 
         stage.initStyle(StageStyle.UNDECORATED);
 
         ConfirmDownloadController controller = loader.getController();
         controller.initPage(urlField.getText() , stage);
 
+        stage.setScene(new Scene(loader.getRoot()));
         stage.show();
 
         StaticData.getAddUrlStage().close();

@@ -37,13 +37,13 @@ application {
 }
 
 javafx {
-    version = "11"
+    version = "12"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
+        languageVersion = JavaLanguageVersion.of(12)
     }
 }
 
