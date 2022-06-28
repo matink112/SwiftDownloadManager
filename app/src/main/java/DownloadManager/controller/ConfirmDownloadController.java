@@ -114,9 +114,9 @@ public class ConfirmDownloadController{
     private void initComponent(String url){
         urlField.setText(url);
 
-        fileName(url);
-
         category = determineCategory(url);
+
+        fileName(url, category);
 
         categoryCombo.setPromptText(category);
 
@@ -144,12 +144,9 @@ public class ConfirmDownloadController{
     }
 
 
-    private void fileName(String url){
-        String[] a = url.split( "/");
-
-        String as =  a[a.length-1].replaceAll("%20|%30|%40|%10" ," ");
-
-        fileNameField.setText(as);
+    private void fileName(String url, String category){
+        String fileName = FileManager.getInstance().getFileNameFromUrl(url, category, config);
+        fileNameField.setText(fileName);
     }
 
 
@@ -159,7 +156,7 @@ public class ConfirmDownloadController{
 
 
     private String getSavePath(String category){
-        return String.format("%s%s%s", setting.getProperty("downloadDir"), sepChar, category);
+        return FileManager.getInstance().getSavePathBaseCategory(category, config);
     }
 
 
