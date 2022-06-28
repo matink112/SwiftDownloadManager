@@ -16,6 +16,7 @@ public class Utils {
         put("base", String.format("%s%s.sdm", System.getProperty("user.home"), sepChar));
         put("setting", String.format("%s%ssetting.properties", get("base"), sepChar));
         put("categories", String.format("%s%scategories.json", get("base"), sepChar));
+        put("files", String.format("%s%sfiles.json", get("base"), sepChar));
         put("defaultDownload", String.format("%s%sDownloads", System.getProperty("user.home"), sepChar));
         put("defaultTemp", String.format("%s%stemp", get("base"), sepChar));
     }};

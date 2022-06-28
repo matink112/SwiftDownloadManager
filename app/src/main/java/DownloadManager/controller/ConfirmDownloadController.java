@@ -363,8 +363,12 @@ public class ConfirmDownloadController{
 
         String category = getselectedCategory();
 
+        FileModel fileModel = getFileModel();
+
+        FileManager.getInstance().appendFileInfo(fileModel);
+
         controller.initPage(urlField.getText() , fileNameField.getText(),
-                 category,pathField.getText(),sizeFile, stage, getFileModel());
+                 category,pathField.getText(),sizeFile, stage, fileModel);
 
         stage.show();
     }
@@ -394,15 +398,11 @@ public class ConfirmDownloadController{
         });
     }
 
+    // TODO: create file model may have bug
     private FileModel getFileModel(){
-
-        for(FileModel a : StaticData.getFileModels())
-            if(a.getUrl().equals(urlField.getText()))
-                return a;
-
         return new FileModel(fileNameField.getText() , new Date() ,sizeFile , urlField.getText(),getselectedCategory()
-                ,pathField.getText()+File.separator+fileNameField ,0,
-                Status.Downloading,fileIcon.getContent());
+                ,pathField.getText()+File.separator+fileNameField.getText() ,0,
+                Status.Downloading, null);
     }
 
 

@@ -12,10 +12,13 @@ import javafx.scene.layout.VBox;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.UUID;
 
 public class FileModel {
 
     private VBox vBox;
+
+    private String id;
     private String fileName;
     private Date date;
     private long size;
@@ -26,7 +29,9 @@ public class FileModel {
     private Status status;
     private String icon;
     private int segmentNum;
-    private boolean isForCompleteList;
+
+    // TODO: two boolean useless because of status
+    private boolean completed;
     private boolean isForInCompleteList;
 
     private DownloadListItemController controller;
@@ -34,9 +39,14 @@ public class FileModel {
 
 
     public FileModel(String fileName, Date date, long size, String url, String category,
-                     String filePath, long downloadedSize, Status status, String icon) {
+                     String filePath, long downloadedSize, Status status, String id) {
 
         segmentNum = (int) Double.parseDouble(Config.getInstance().properties().getProperty("segmentPerDownload"));
+
+        if (id == null)
+            this.id = UUID.randomUUID().toString();
+        else
+            this.id = id;
 
         this.setFileName(fileName);
         this.setDate(date);
@@ -173,5 +183,13 @@ public class FileModel {
 
     public void setController(DownloadListItemController controller) {
         this.controller = controller;
+    }
+
+    public int getSegmentNum() {
+        return segmentNum;
+    }
+
+    public String getId() {
+        return id;
     }
 }
