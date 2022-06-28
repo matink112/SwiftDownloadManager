@@ -235,7 +235,7 @@ public class ConfirmDownloadController{
 
 
         categoryCombo.valueProperty().addListener((observable, oldValue, newValue) -> {
-            changeFolderPath(String.format("%s%s%s", setting.getProperty("DownloadDir"), sepChar, newValue));
+            changeFolderPath(String.format("%s%s%s", setting.getProperty("downloadDir"), sepChar, newValue));
         });
     }
 
