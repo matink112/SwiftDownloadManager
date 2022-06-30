@@ -77,12 +77,11 @@ public class FileModel {
         String category = (String) obj.get("category");
         String filePath = (String) obj.get("filePath");
         String tempDir = (String) obj.get("tempDir");
-        Status status = Status.valueOf((String) obj.get("status"));
+        String statusStr = (String) obj.get("status");
         String id = (String) obj.get("tempDir");
         int segments = Integer.parseInt((String) obj.get("segments"));
-        long downloadSize = calculateDownloadedSize(fm, status,size,fileName,tempDir,segments);
-        System.out.println(downloadSize);
-        System.out.println(status);
+        long downloadSize = calculateDownloadedSize(fm, statusStr,size,fileName,tempDir,segments);
+        Status status = (downloadSize == -1)? Status.Corrupted: Status.valueOf(statusStr);
 
         return new FileModel(
                 fileName,
@@ -98,10 +97,10 @@ public class FileModel {
         );
     }
 
-    private static long calculateDownloadedSize(FileManager fm, Status status, long size, String fileName,
+    private static long calculateDownloadedSize(FileManager fm, String status, long size, String fileName,
                                                 String tempDir, int segments) {
         try {
-            return (status == Status.Finished) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
+            return (Status.Finished == Status.valueOf(status)) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
         } catch (IOException e) {
             return -1;
         }
