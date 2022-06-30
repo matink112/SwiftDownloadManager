@@ -35,7 +35,7 @@ public class SegmentDownloader extends Thread {
 
     private int tryCunt;
 
-    public SegmentDownloader(FileDownloader fileDownloader, String name, long segmentSize, long startByte
+    public SegmentDownloader(FileDownloader fileDownloader, String segmentName, long segmentSize, long startByte
             , int segmentNumber, String url, JFXProgressBar progressBar, String tempPath) {
         segmentPath = tempPath;
         this.fileDownloader = fileDownloader;
@@ -43,7 +43,7 @@ public class SegmentDownloader extends Thread {
         this.startByte = startByte;
         this.segmentNumber = segmentNumber;
         this.url = url;
-        this.setSegmentName(name + "(" + segmentNumber + ").cache");
+        this.setSegmentName(segmentName);
         this.progressBar = progressBar;
     }
 

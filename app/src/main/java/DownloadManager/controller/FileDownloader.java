@@ -230,6 +230,8 @@ public class FileDownloader extends Thread{
 
         controller.deleteProgressIfExist();
 
+        String[] segments = FileManager.getInstance().getSegmentNames(fileModel.getId(), fileModel.getSegmentNum());
+
         for(int i=0 ; i< segMentNumber ; i++){
 
             JFXProgressBar progressBar =  new JFXProgressBar();
@@ -239,7 +241,7 @@ public class FileDownloader extends Thread{
                 eachSegmentSize = size - start;
             }
 
-            SegmentDownloader segmentDownloader = new SegmentDownloader(this ,name , eachSegmentSize
+            SegmentDownloader segmentDownloader = new SegmentDownloader(this ,segments[i] ,eachSegmentSize
                     ,start ,i , url ,progressBar, config.properties().getProperty("tempDir"));
 
             downloaders.add(segmentDownloader);

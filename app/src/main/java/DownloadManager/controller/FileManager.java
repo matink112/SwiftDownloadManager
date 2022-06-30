@@ -52,18 +52,32 @@ public class FileManager {
         String fileName =  splitUrl[splitUrl.length-1].replaceAll("%20|%30|%40|%10" ," ");
 
         if (!Boolean.parseBoolean(config.properties().getProperty("overwriteExistingFile"))){
-            if (Files.exists(Paths.get(getSavePathBaseCategory(category, config),fileName))) {
+            if (isNameAlreadyTaken(fileName, category, config)) {
                 int i = 0;
                 String[] splitFileName = fileName.split("\\.", 2);
                 String newFileName;
                 do {
                     i++;
                     newFileName = String.format("%s (%d).%s", splitFileName[0], i, splitFileName[1]);
-                } while (Files.exists(Paths.get(getSavePathBaseCategory(category, config),newFileName)));
+                } while (isNameAlreadyTaken(newFileName, category, config));
                 fileName = newFileName;
             }
         }
         return fileName;
+    }
+
+    public boolean isNameAlreadyTaken(String fileName, String category, Config config){
+        return Files.exists(Paths.get(getSavePathBaseCategory(category, config),fileName))
+                || isFileExistsInJson(fileName);
+    }
+
+    private boolean isFileExistsInJson(String fileName) {
+        for (Object o: files.toArray()) {
+            JSONObject obj = (JSONObject) o;
+            if (((String) obj.get("name")).equals(fileName))
+                return true;
+        }
+        return false;
     }
 
     public String getSavePathBaseCategory(String category, Config config) {
@@ -147,10 +161,10 @@ public class FileManager {
         return total;
     }
 
-    public String[] getSegmentNames(String fileName, int segmentNumber) {
+    public String[] getSegmentNames(String uuid, int segmentNumber) {
         String[] temps = new String[segmentNumber];
         for (int i=0; i < segmentNumber; i++)
-            temps[i] = String.format("%s(%d).cache", fileName, i);
+            temps[i] = String.format("%s(%d).cache", uuid, i);
         return temps;
     }
 

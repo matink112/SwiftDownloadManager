@@ -33,6 +33,8 @@ public class FileModel {
     private String icon;
     private int segmentNum;
 
+    private boolean isResumable;
+
     // TODO: two boolean useless because of status
     private boolean completed;
     private boolean isForInCompleteList;
@@ -94,7 +96,15 @@ public class FileModel {
         );
     }
 
-
+    private long calculateDownloadedSize(FileManager fm, int segments) {
+        try {
+            isResumable = true;
+            return (status == Status.Finished) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
+        } catch (IOException e) {
+            isResumable = false;
+            return 0;
+        }
+    }
     private void createDownloadList(){
 
         FXMLLoader loader = Utils.loadFXMLPage("DownloadListItem");
@@ -228,5 +238,9 @@ public class FileModel {
 
     public String getTempDir() {
         return tempDir;
+    }
+
+    public boolean isResumable() {
+        return isResumable;
     }
 }
