@@ -80,7 +80,9 @@ public class FileModel {
         Status status = Status.valueOf((String) obj.get("status"));
         String id = (String) obj.get("tempDir");
         int segments = Integer.parseInt((String) obj.get("segments"));
-        long downloadSize = (status == Status.Finished) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
+        long downloadSize = calculateDownloadedSize(fm, status,size,fileName,tempDir,segments);
+        System.out.println(downloadSize);
+        System.out.println(status);
 
         return new FileModel(
                 fileName,
@@ -96,13 +98,12 @@ public class FileModel {
         );
     }
 
-    private long calculateDownloadedSize(FileManager fm, int segments) {
+    private static long calculateDownloadedSize(FileManager fm, Status status, long size, String fileName,
+                                                String tempDir, int segments) {
         try {
-            isResumable = true;
             return (status == Status.Finished) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
         } catch (IOException e) {
-            isResumable = false;
-            return 0;
+            return -1;
         }
     }
     private void createDownloadList(){

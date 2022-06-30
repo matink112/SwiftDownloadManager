@@ -148,9 +148,9 @@ public class FileManager {
             JSONObject obj = (JSONObject) o;
             if (((String) obj.get("id")).equals(id)){
                 obj.put("status", status.toString());
+                saveJson();
+                break;
             }
-            saveJson();
-            break;
         }
     }
 
