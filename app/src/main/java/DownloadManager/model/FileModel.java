@@ -198,6 +198,7 @@ public class FileModel {
 
     public void setStatus(Status status) {
         this.status = status;
+        FileManager.getInstance().updateFileStatus(getId(), status);
         if(downloadedSize != null && controller != null) {
             controller.updateStatusLable(status.toString() ,
                     ConfirmDownloadController.getSizeInFormat(downloadedSize));

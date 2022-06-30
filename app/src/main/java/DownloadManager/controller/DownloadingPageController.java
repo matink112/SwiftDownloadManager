@@ -123,6 +123,8 @@ public class DownloadingPageController implements Initializable {
     private void cancelbtnHandler(){
         fileDownloader.stopDownload();
 
+        fileModel.setStatus(Status.Pause);
+
         fileDownloader = null;
 
         System.gc();
@@ -180,6 +182,10 @@ public class DownloadingPageController implements Initializable {
         initbtns();
 
         moveStageHandler();
+    }
+
+    private void updateStatus(Status status) {
+        FileManager.getInstance().updateFileStatus(fileModel.getId(), status);
     }
 
     public Stage getStage() {
