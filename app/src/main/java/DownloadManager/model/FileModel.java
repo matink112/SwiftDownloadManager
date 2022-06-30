@@ -71,18 +71,18 @@ public class FileModel {
     }
 
     public static FileModel parseJson(JSONObject obj, FileManager fm) throws IOException, ParseException {
-//        SimpleDateFormat formatter = new SimpleDateFormat("dow mon dd hh:mm:ss zzz yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("E MMM dd hh:mm:ss zzz yyyy");
         String fileName = (String) obj.get("name");
-        Date date = new Date();
+        Date date = formatter.parse((String) obj.get("date"));
         long size = Long.parseLong((String) obj.get("size"));
         String url = (String) obj.get("url");
         String category = (String) obj.get("category");
         String filePath = (String) obj.get("filePath");
         String tempDir = (String) obj.get("tempDir");
         String statusStr = (String) obj.get("status");
-        String id = (String) obj.get("tempDir");
+        String id = (String) obj.get("id");
         int segments = Integer.parseInt((String) obj.get("segments"));
-        long downloadSize = calculateDownloadedSize(fm, statusStr, size, fileName, tempDir, segments);
+        long downloadSize = calculateDownloadedSize(fm, statusStr, size, id, tempDir, segments);
         Status status = (downloadSize == -1)? Status.Corrupted: Status.valueOf(statusStr);
 
         return new FileModel(
@@ -99,10 +99,12 @@ public class FileModel {
         );
     }
 
-    private static long calculateDownloadedSize(FileManager fm, String status, long size, String fileName,
+    private static long calculateDownloadedSize(FileManager fm, String status, long size, String uuid,
                                                 String tempDir, int segments) {
+        System.out.println(status);
+        System.out.println(Status.Finished == Status.valueOf(status));
         try {
-            return (Status.Finished == Status.valueOf(status)) ? size : fm.incompleteDownloadedSize(fileName, tempDir, segments);
+            return (Status.Finished == Status.valueOf(status)) ? size : fm.incompleteDownloadedSize(uuid, tempDir, segments);
         } catch (IOException e) {
             return -1;
         }
@@ -113,7 +115,7 @@ public class FileModel {
 
         setController(loader.getController());
 
-        getController().initValues(fileName ,size,downloadedSize, date.toString() , status.toString(),this);
+        getController().initValues(fileName ,size,downloadedSize, date , status.toString(),this);
 
         vBox = loader.getRoot();
 

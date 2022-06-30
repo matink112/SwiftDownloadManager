@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.SVGPath;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DownloadListItemController implements Initializable{
@@ -33,13 +35,14 @@ public class DownloadListItemController implements Initializable{
     private String downloadedSize;
 
 
-    public void initValues(String fileName , long size , long downloadedSize, String Date, String Status , FileModel fileModel){
+    public void initValues(String fileName , long size , long downloadedSize, Date date, String Status , FileModel fileModel){
         namelbl.setText(fileName);
         statuslbl.setText(Status);
         this.fileModel = fileModel;
 
         this.size = ConfirmDownloadController.getSizeInFormat(size);
-        datelbl.setText(Date);
+
+        setDate(date);
 
         this.downloadedSize = ConfirmDownloadController.getSizeInFormat(downloadedSize);
 
@@ -48,10 +51,13 @@ public class DownloadListItemController implements Initializable{
         this.icon.setContent(Category.getInstance().getSvgIcon(fileModel.getCategory()));
     }
 
-    public void updateStatusLable(String status , String downloadedSize ){
-        String aa = status+"  "+downloadedSize+" / "+size;
-        Platform.runLater(()->statuslbl.setText(aa));
+    private void setDate(Date date) {
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss MM/dd/yyyy");
+        datelbl.setText(formatter.format(date));
+    }
 
+    public void updateStatusLable(String status , String downloadedSize ){
+        Platform.runLater(()->statuslbl.setText(String.format("%s  %s / %s", status, downloadedSize, size)));
     }
 
 

@@ -155,6 +155,7 @@ public class FileManager {
     }
 
     public long incompleteDownloadedSize(String fileName, String tempDir, int segmentNumber) throws IOException {
+        System.out.println("calc");
         long total = 0;
         for (String name: getSegmentNames(fileName, segmentNumber))
             total += Files.size(Paths.get(tempDir, name));
