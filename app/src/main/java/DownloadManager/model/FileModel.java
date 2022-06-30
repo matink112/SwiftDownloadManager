@@ -48,11 +48,7 @@ public class FileModel {
 
         segmentNum = (int) Double.parseDouble(Config.getInstance().properties().getProperty("segmentPerDownload"));
 
-        if (id == null)
-            this.id = UUID.randomUUID().toString();
-        else
-            this.id = id;
-
+        this.id = getId(id);
         this.tempDir = tempDir;
         this.setFileName(fileName);
         this.setDate(date);
@@ -68,6 +64,12 @@ public class FileModel {
         createDownloadList();
     }
 
+    private String getId(String uuid) {
+        if (uuid == null)
+            return UUID.randomUUID().toString();
+        return uuid;
+    }
+
     public static FileModel parseJson(JSONObject obj, FileManager fm) throws IOException, ParseException {
 //        SimpleDateFormat formatter = new SimpleDateFormat("dow mon dd hh:mm:ss zzz yyyy");
         String fileName = (String) obj.get("name");
@@ -80,7 +82,7 @@ public class FileModel {
         String statusStr = (String) obj.get("status");
         String id = (String) obj.get("tempDir");
         int segments = Integer.parseInt((String) obj.get("segments"));
-        long downloadSize = calculateDownloadedSize(fm, statusStr,size,fileName,tempDir,segments);
+        long downloadSize = calculateDownloadedSize(fm, statusStr, size, fileName, tempDir, segments);
         Status status = (downloadSize == -1)? Status.Corrupted: Status.valueOf(statusStr);
 
         return new FileModel(
