@@ -83,7 +83,7 @@ public class FileModel {
         String id = (String) obj.get("id");
         int segments = Integer.parseInt((String) obj.get("segments"));
         long downloadSize = calculateDownloadedSize(fm, statusStr, size, id, tempDir, segments);
-        Status status = (downloadSize == -1)? Status.Corrupted: Status.valueOf(statusStr);
+        Status status = getStatus(statusStr, downloadSize, id, fm);
 
         return new FileModel(
                 fileName,
@@ -97,6 +97,17 @@ public class FileModel {
                 status,
                 id
         );
+    }
+
+    private static Status getStatus(String statusStr,long downloadedSize,String id, FileManager fm) {
+        if (downloadedSize == -1)
+            return Status.Corrupted;
+        else if (statusStr.equals(Status.Downloading.toString())){
+            fm.updateFileStatus(id, Status.Pause);
+            return Status.Pause;
+        } else
+            return Status.valueOf(statusStr);
+
     }
 
     private static long calculateDownloadedSize(FileManager fm, String status, long size, String uuid,
