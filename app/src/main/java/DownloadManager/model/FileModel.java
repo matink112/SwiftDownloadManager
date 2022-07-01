@@ -17,8 +17,8 @@ import java.util.UUID;
 
 public class FileModel {
 
+    // TODO: move to controller
     private VBox vBox;
-
     private String id;
     private String fileName;
     private Date date;
@@ -26,19 +26,13 @@ public class FileModel {
     private String url;
     private String Category;
     private String filePath;
-
     private String tempDir;
     private Long downloadedSize;
     private Status status;
     private String icon;
     private int segmentNum;
 
-    private boolean isResumable;
-
-    // TODO: two boolean useless because of status
-    private boolean completed;
-    private boolean isForInCompleteList;
-
+    // TODO: never use this in model file
     private DownloadListItemController controller;
 
 
@@ -120,6 +114,8 @@ public class FileModel {
             return -1;
         }
     }
+
+    // TODO: move to controller
     private void createDownloadList(){
 
         FXMLLoader loader = Utils.loadFXMLPage("DownloadListItem");
@@ -199,7 +195,7 @@ public class FileModel {
         this.downloadedSize = downloadedSize;
         if(status != null && controller != null) {
             controller.updateStatusLable(status.toString(), ConfirmDownloadController.getSizeInFormat(downloadedSize));
-            copySceneToOtherList(status);
+            System.out.println("copy scene");
         }
     }
 
@@ -213,17 +209,6 @@ public class FileModel {
         if(downloadedSize != null && controller != null) {
             controller.updateStatusLable(status.toString() ,
                     ConfirmDownloadController.getSizeInFormat(downloadedSize));
-
-            copySceneToOtherList(status);
-        }
-    }
-
-    private void copySceneToOtherList(Status status){
-
-        if(!isForInCompleteList) {
-
-
-            isForInCompleteList = true;
         }
     }
 
@@ -256,7 +241,4 @@ public class FileModel {
         return tempDir;
     }
 
-    public boolean isResumable() {
-        return isResumable;
-    }
 }

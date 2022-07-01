@@ -5,6 +5,7 @@ import DownloadManager.model.Config;
 import DownloadManager.model.FileModel;
 import DownloadManager.model.Status;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -39,6 +40,11 @@ public class DownloadListItemController implements Initializable{
         namelbl.setText(fileName);
         statuslbl.setText(Status);
         this.fileModel = fileModel;
+
+//        statuslbl.textProperty().bind(fileModel.getDownloadedSize());
+//
+//        SimpleIntegerProperty a = new SimpleIntegerProperty(10);
+//        a.addListener();
 
         this.size = ConfirmDownloadController.getSizeInFormat(size);
 
