@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXCheckBox?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXSlider?>
-<?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="1927.0" prefWidth="340.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.OptionPageController">
+<AnchorPane prefHeight="1927.0" prefWidth="340.0" style="-fx-background-color: #242424;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DownloadManager.controller.OptionPageController">
    <children>
       <Label layoutX="16.0" layoutY="14.0" text="General settings" textFill="WHITE" AnchorPane.leftAnchor="16.0">
          <font>
@@ -56,7 +52,7 @@
             <Group layoutX="1.0" layoutY="96.0">
                <children>
                   <JFXTextField fx:id="socksField" layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" promptText="&lt;Host:Port&gt;" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
-                  <JFXCheckBox fx:id="useSocksCheck" checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use socks proxy server" textFill="WHITE" unCheckedColor="WHITE" />
+                  <JFXCheckBox fx:id="useSocksCheck" checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use Socks" textFill="WHITE" unCheckedColor="WHITE" />
                </children>
             </Group>
             <Label layoutX="35.0" layoutY="527.0" text="Proxy Setting" textFill="WHITE">
@@ -87,7 +83,7 @@
             <Group>
                <children>
                   <JFXTextField fx:id="proxyField" layoutX="56.0" layoutY="600.0" prefHeight="29.0" prefWidth="245.0" promptText="&lt;Host:Port&gt;" style="-fx-text-fill: white; -fx-prompt-text-fill: white;" unFocusColor="#43ff50" />
-                  <JFXCheckBox fx:id="useProxyCheck" checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use proxy server" textFill="WHITE" unCheckedColor="WHITE" />
+                  <JFXCheckBox fx:id="useProxyCheck" checkedColor="#10a158" layoutX="56.0" layoutY="570.0" mnemonicParsing="false" text="Use Proxy" textFill="WHITE" unCheckedColor="WHITE" />
                </children>
             </Group>
          </children>
