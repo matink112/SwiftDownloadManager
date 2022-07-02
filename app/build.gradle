@@ -9,9 +9,56 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.8'
-    id 'java-library'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+//    id 'java-library'
 }
+
+def args = [
+        "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
+        "--illegal-access=warn",
+        "--add-opens=javafx.controls/javafx.scene.control.skin=com.jfoenix",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
+        "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
+        //the next line changes everything.
+        "--add-opens=java.base/java.lang.reflect=com.jfoenix",
+
+        "--add-exports=javafx.controls/javafx.scene.control.skin=com.jfoenix",
+        "--add-exports=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-exports=java.base/java.lang.reflect=com.jfoenix",
+        "--add-exports=javafx.controls/com.Sun.javafx.scene.control.behavior=com.jfoenix",
+        "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
+
+        "--add-exports=javafx.base/com.sun.javafx.event=ALL-UNNAMED",
+
+        "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
+                "=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
+                "=com.jfoenix",
+        "--add-exports=javafx.controls/com.sun.javafx.binding=com.jfoenix",
+        "--illegal-access=warn",
+        "--add-opens=javafx.controls/javafx.scene.control.skin=com.jfoenix",
+        "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior" +
+                "=com.jfoenix",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
+        "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
+        "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
+        "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix",
+
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=com.jfoenix",
+        "--add-exports=javafx.controls/com.sun.javafx.scene.control=com.jfoenix",
+        "--add-exports=javafx.base/com.sun.javafx.binding=com.jfoenix",
+        "--add-exports=javafx.graphics/com.sun.javafx.stage=com.jfoenix",
+        "--add-exports=javafx.base/com.sun.javafx.event=com.jfoenix"
+]
+
+//apply plugin: 'application'
+//applicationDefaultJvmArgs = args
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -29,11 +76,17 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    // https://mvnrepository.com/artifact/org.burningwave/core
+    implementation group: 'org.burningwave', name: 'core', version: '12.53.0'
+
+
+    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
 }
 
 application {
     // Define the main class for the application.
-    mainClass = 'DownloadManager.App'
+    mainClass = 'DownloadManager.Launcher'
 }
 
 javafx {
@@ -47,15 +100,20 @@ java {
     }
 }
 
+mainClassName = 'DownloadManager.Launcher'
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    manifest {
+        attributes 'Main-Class': 'DownloadManager.Launcher'
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 run {
-    jvmArgs = [
-            "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED",
-            "--add-exports=javafx.controls/com.sun.javafx.scene.control=ALL-UNNAMED",
-            "--add-exports=javafx.base/com.sun.javafx.binding=ALL-UNNAMED",
-            "--add-exports=javafx.graphics/com.sun.javafx.stage=ALL-UNNAMED",
-            "--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED",
-            "--add-exports=javafx.controls/com.sun.javafx.scene.control.behavior=ALL-UNNAMED"
-    ]
+//    jvmArgs = args
 }
 
 version = '1.0.0'

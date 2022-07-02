@@ -195,7 +195,6 @@ public class FileModel {
         this.downloadedSize = downloadedSize;
         if(status != null && controller != null) {
             controller.updateStatusLable(status.toString(), ConfirmDownloadController.getSizeInFormat(downloadedSize));
-            System.out.println("copy scene");
         }
     }
 
