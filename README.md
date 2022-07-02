@@ -1,5 +1,8 @@
 
-# Swift Download Manager
+# <img src="https://user-images.githubusercontent.com/46292847/176991937-7f4d6e0e-5e6e-4f9e-a36f-63418af81fa1.png" width="30" height="30" /> Swift Download Manager
+
+![GitHub](https://img.shields.io/github/license/matink112/SwiftDownloadManager?style=for-the-badge) ![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/matink112/SwiftDownloadManager?include_prereleases&style=for-the-badge) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/matink112/SwiftDownloadManager?style=for-the-badge)
+
 SDM is a download manager built on the look of XDM and IDM that written in Java.
 
 The application splits download file into multiple blocks. Attempts to download each block parallelly which improves the download speed.
